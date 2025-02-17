@@ -56,6 +56,8 @@
 					</tr>
 				</tbody>
 			</table>
+			
+			<a href="./add" class="btn btn-primary">상품 등록</a>
 
 		</div>
 	</div>
