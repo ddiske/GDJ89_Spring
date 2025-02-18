@@ -14,23 +14,23 @@
 	<div class="container-fluid my-5">
 		<div class="row col-md-8 offset-md-2">
 			<!-- contents 내용 작성 -->
-			<form action="" method="post">
+			<form action="./add" method="post">
 			<legend>신규 상품 등록하기</legend>
 				<div class="input-group mb-3">
 					<span class="input-group-text">상품명</span>
 					<div class="form-control">
 						<input type="text" class="form-control" id="floatingInputGroup1"
-							placeholder=""> <label for="floatingInputGroup1"></label>
+							placeholder="" name="productName"> <label for="floatingInputGroup1"></label>
 					</div>
 					<span class="input-group-text">이자율</span>
 					<div class="form-control">
 						<input type="text" class="form-control" id="floatingInputGroup1"
-							placeholder=""> <label for="floatingInputGroup1"></label>
+							placeholder="" name="productRate"> <label for="floatingInputGroup1"></label>
 					</div>
 					<span class="input-group-text">상세 정보</span>
 					<div class="form-control">
 						<input type="text" class="form-control" id="floatingInputGroup1"
-							placeholder=""> <label for="floatingInputGroup1"></label>
+							placeholder="" name="productDetail"> <label for="floatingInputGroup1"></label>
 					</div>
 					<button class="btn btn-outline-success">등록하기</button>
 				</div>

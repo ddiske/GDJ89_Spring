@@ -28,5 +28,12 @@ public class ProductController {
 		
 		return "products/add";
 	}
+	
+	@RequestMapping(value = "add", method = RequestMethod.POST)
+	public String add2() throws Exception {
+		System.out.println("Product Add2");
+		
+		return "products/list";
+	}
 
 }
