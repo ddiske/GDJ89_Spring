@@ -14,46 +14,25 @@
 	<div class="container-fluid my-5">
 		<div class="row col-md-8 offset-md-2">
 
-			<table class="table">
+			<table class="table table-striped">
 				<thead class="table-dark">
 					<tr>
 						<th scope="col">#</th>
-						<th scope="col">First</th>
-						<th scope="col">Middle</th>
-						<th scope="col">Last</th>
+						<th scope="col">상품번호</th>
+						<th scope="col">상품명</th>
+						<th scope="col">이자율</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td scope="row">1</td>
-						<td>a</td>
-						<td>b</td>
-						<td>c</td>
-					</tr>
-					<tr>
-						<td scope="row">2</td>
-						<td>d</td>
-						<td>e</td>
-						<td>f</td>
-					</tr>
-					<tr>
-						<td scope="row">3</td>
-						<td>g</td>
-						<td>h</td>
-						<td>i</td>
-					</tr>
-					<tr>
-						<td scope="row">4</td>
-						<td>j</td>
-						<td>k</td>
-						<td>l</td>
-					</tr>
-					<tr>
-						<td scope="row">5</td>
-						<td>m</td>
-						<td>n</td>
-						<td>o</td>
-					</tr>
+					<c:forEach items="${list}" var="v">
+						<tr>
+							<td scope="row">${v.productNum}</td>
+							<td>${v.productNum }</td>
+							<td><a href="./detail?productNum=${v.productNum }">${v.productName }</td>
+							<td>${v.productRate }</td>
+							<td>${v.productDate }</td>
+						</tr>
+					</c:forEach>
 				</tbody>
 			</table>
 			
