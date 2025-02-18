@@ -1,9 +1,12 @@
 package com.root.app.products;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -14,20 +17,25 @@ public class ProductController {
 	@Autowired
 	private ProductService productService;
 	
+//	Model -> requestScope와 라이프사이클이 비슷
+//	응답이 발생하면 소멸
+//	request와 비슷한 일을 함
+//	java -> jsp로 데이터를 전달할 때 사용
 	
 	@RequestMapping(value = "list", method = RequestMethod.GET)
-	public String getList() throws Exception {
-		System.out.println("Product List");
+	public String getList(Model model) throws Exception {
 		
-		productService.getList();
+		List<ProductDTO> ar = productService.getList();
+		model.addAttribute("list", ar);
 		
 		return "products/list";
 	}
 	
 	@RequestMapping(value = "detail", method = RequestMethod.GET)
-	public String getDetail() throws Exception {
-		System.out.println("Product Detail");
+	public String getDetail(ProductDTO productDTO) throws Exception {
 		
+		productDTO = productService.getDetail(productDTO);
+
 		return "products/detail";
 	}
 	
@@ -60,12 +68,17 @@ public class ProductController {
 //		System.out.println(productRate);
 		
 //		-3-
-		System.out.println(productDTO.getProductName());
-		System.out.println(productDTO.getProductRate());
+//		System.out.println(productDTO.getProductName());
+//		System.out.println(productDTO.getProductRate());
 		
+		int result = productService.add(productDTO);
+		String path = "products/add";
 		
+		if(result > 0) {
+			path = "redirect:./list";
+		}
 		
-		return "products/list";
+		return path;
 	}
 
 }
