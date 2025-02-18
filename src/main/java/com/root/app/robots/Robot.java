@@ -8,14 +8,58 @@ import com.root.app.parts.Arm;
 import com.root.app.parts.LeftArm;
 import com.root.app.parts.RightArm;
 
-@Component
+
 public class Robot {
 	
-	@Autowired
 	private Arm la;
-	@Autowired
-	@Qualifier("rightArm")
+	
 	private Arm ra;
+	
+	private String name;
+	
+	private Integer age;
+	
+	
+	public Robot(Arm la, Arm ra, String name, Integer age) {
+		this.la = la;
+		this.ra = ra;
+		this.name = name;
+		this.age = age;
+	}
+	
+	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Integer getAge() {
+		return age;
+	}
+
+	public void setAge(Integer age) {
+		this.age = age;
+	}
+
+	public Arm getLa() {
+		return la;
+	}
+
+	public void setLa(Arm la) {
+		this.la = la;
+	}
+
+	public Arm getRa() {
+		return ra;
+	}
+
+	public void setRa(Arm ra) {
+		this.ra = ra;
+	}
+
 	
 	public void attack() {
 		System.out.println("Robot");

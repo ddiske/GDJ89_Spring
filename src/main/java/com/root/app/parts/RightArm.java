@@ -2,7 +2,7 @@ package com.root.app.parts;
 
 import org.springframework.stereotype.Component;
 
-@Component
+
 public class RightArm implements Arm {
 	
 	@Override
