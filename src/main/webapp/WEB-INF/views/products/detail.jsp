@@ -19,7 +19,8 @@
 			<h6>${productDTO.productRate }</h6>
 			<h6>${productDTO.productDate }</h6>
 			<h6>${productDTO.productDetail }</h6>
-			<a href=""></a>
+			<a href="./update?productNum=${productDTO.productNum }">수정하기</a>
+			<a href="./delete?productNum=${productDTO.productNum }">삭제하기</a>
 		</div>
 	</div>
 

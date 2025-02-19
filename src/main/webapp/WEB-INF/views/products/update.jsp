@@ -14,30 +14,30 @@
 	<div class="container-fluid my-5">
 		<div class="row col-md-8 offset-md-2">
 			<!-- contents 내용 작성 -->
-			<form action="./add" method="post">
-			<legend>신규 상품 등록하기</legend>
+			<form action="./update?productNum=${productDTO.productNum }" method="post">
+			<legend>상품 정보 수정</legend>
 				<div class="input-group mb-3">
 					<span class="input-group-text">상품명</span>
 					<div class="form-control">
 						<input type="text" class="form-control" id="floatingInputGroup1"
-							placeholder="" name="productName"> <label for="floatingInputGroup1"></label>
+							placeholder="${productDTO.productName}" name="productName"> <label for="floatingInputGroup1"></label>
 					</div>
 					<span class="input-group-text">이자율</span>
 					<div class="form-control">
 						<input type="text" class="form-control" id="floatingInputGroup1"
-							placeholder="" name="productRate"> <label for="floatingInputGroup1"></label>
+							placeholder="${productDTO.productRate}" name="productRate"> <label for="floatingInputGroup1"></label>
 					</div>
 					<span class="input-group-text">기한</span>
 					<div class="form-control">
 						<input type="date" class="form-control" id="floatingInputGroup1"
-							placeholder="" name="productDate"> <label for="floatingInputGroup1"></label>
+							placeholder="${productDTO.productDate}" name="productDate"> <label for="floatingInputGroup1"></label>
 					</div>
 					<span class="input-group-text">상세 정보</span>
 					<div class="form-control">
 						<input type="text" class="form-control" id="floatingInputGroup1"
-							placeholder="" name="productDetail"> <label for="floatingInputGroup1"></label>
+							placeholder="${productDTO.productDetail}" name="productDetail"> <label for="floatingInputGroup1"></label>
 					</div>
-					<button class="btn btn-outline-success">등록하기</button>
+					<button class="btn btn-outline-success">수정하기</button>
 				</div>
 			</form>
 		</div>

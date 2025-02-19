@@ -24,38 +24,38 @@ public class ProductController {
 //	java -> jsp로 데이터를 전달할 때 사용
 	
 	@RequestMapping(value = "list", method = RequestMethod.GET)
-	public void getList(Model model) throws Exception {
+	public String getList(Model model) throws Exception {
 		
 		List<ProductDTO> ar = productService.getList();
 		model.addAttribute("list", ar);
 		
-//		return "products/list";
+		return "products/list";
 	}
 	
 	@RequestMapping(value = "detail", method = RequestMethod.GET)
-	public String getDetail(ProductDTO productDTO) throws Exception {
+	public ModelAndView getDetail(ProductDTO productDTO) throws Exception {
+		
+		productDTO = productService.getDetail(productDTO);
 		
 		ModelAndView mv = new ModelAndView();
+		
 		// model
-		mv.addObject("속성명", "값");
+//		mv.addObject("속성명", "값");
+		mv.addObject("productDTO", productDTO);
 		// view
 		mv.setViewName("products/detail");
 		
-		productDTO = productService.getDetail(productDTO);
-
-		return "products/detail";
+		return mv;
 	}
 	
 	@RequestMapping(value = "add", method = RequestMethod.GET)
 	public String add() throws Exception {
-		System.out.println("Product Add");
 		
 		return "products/add";
 	}
 	
 	@RequestMapping(value = "add", method = RequestMethod.POST)
 	public String add(ProductDTO productDTO) throws Exception {
-		System.out.println("Product Add2");
 //		파라미터 처리 방법
 //		1. 모든 요청 정보는 Request에 있다.(URL, Method, Parameter, Cookie...)
 //		   메서드의 매개변수로 HttpServletRequest request 선언
@@ -80,6 +80,40 @@ public class ProductController {
 		
 		int result = productService.add(productDTO);
 		String path = "products/add";
+		
+		if(result > 0) {
+			path = "redirect:./list";
+		}
+		
+		return path;
+	}
+	
+	@RequestMapping(value = "update", method = RequestMethod.GET)
+	public ModelAndView update(ProductDTO productDTO) throws Exception {
+		productDTO = productService.getDetail(productDTO);
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("productDTO", productDTO);
+		mv.setViewName("products/update");
+		
+		return mv;
+	}
+	
+	@RequestMapping(value = "update", method = RequestMethod.POST)
+	public String update2(ProductDTO productDTO) throws Exception {
+		int result = productService.update(productDTO);
+		String path = "products/update";
+		
+		if(result > 0) {
+			path = "redirect:./list";
+		}
+		
+		return path;
+	}
+	
+	@RequestMapping(value = "delete", method = RequestMethod.GET)
+	public String delete(ProductDTO productDTO) throws Exception {
+		int result = productService.delete(productDTO);
+		String path = "products/detail";
 		
 		if(result > 0) {
 			path = "redirect:./list";
