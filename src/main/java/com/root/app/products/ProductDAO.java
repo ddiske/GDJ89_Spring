@@ -31,10 +31,12 @@ public class ProductDAO {
 			productDTO.setProductNum(rs.getLong("productnum"));
 			productDTO.setProductName(rs.getString("productname"));
 			productDTO.setProductRate(rs.getDouble("productrate"));
-			productDTO.setProductDate(rs.getDate("productdate"));
+			productDTO.setProductDetail(rs.getString("productdetail"));
 			
 			ar.add(productDTO);
 		}
+		
+		DBConnection.disConnect(rs, st, connection);
 		
 		return ar;
 	}
@@ -57,6 +59,8 @@ public class ProductDAO {
 			productDTO = null;
 		}
 		
+		DBConnection.disConnect(rs, st, connection);
+		
 		return productDTO;
 	}
 	
@@ -70,7 +74,26 @@ public class ProductDAO {
 		st.setString(3, productDTO.getProductDetail());
 		int result = st.executeUpdate();
 		
+		DBConnection.disConnect(st, connection);
+		
 		return result;		
+	}
+	
+	public int update(ProductDTO productDTO) throws Exception {
+		Connection connection = DBConnection.getConnection();
+		String sql = "UPDATE PRODUCTS SET PRODUCTNAME = ?, PRODUCTRATE = ?, PRODUCTDATE = ?, PRODUCTDETAIL = ?"
+				+ " WHERE PRODUCTNUM = ?";
+		PreparedStatement st = connection.prepareStatement(sql);
+		st.setString(1, productDTO.getProductName());
+		st.setDouble(2, productDTO.getProductRate());
+		st.setDate(3, productDTO.getProductDate());
+		st.setString(4, productDTO.getProductDetail());
+		st.setLong(5, productDTO.getProductNum());
+		int result = st.executeUpdate();
+		
+		DBConnection.disConnect(st, connection);
+		
+		return result;
 	}
 
 }

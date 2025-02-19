@@ -8,6 +8,12 @@
 <title>Insert title here</title>
 <c:import url="/WEB-INF/views/templates/boot_css.jsp"></c:import>
 </head>
+<style>
+	a {
+		text-decoration: none;
+		color: black;
+	}
+</style>
 <body>
 	<c:import url="/WEB-INF/views/templates/layout_header.jsp"></c:import>
 
@@ -17,20 +23,19 @@
 			<table class="table table-striped">
 				<thead class="table-dark">
 					<tr>
-						<th scope="col">#</th>
 						<th scope="col">상품번호</th>
 						<th scope="col">상품명</th>
 						<th scope="col">이자율</th>
+						<th scope="col">상세 정보</th>
 					</tr>
 				</thead>
 				<tbody>
 					<c:forEach items="${list}" var="v">
 						<tr>
-							<td scope="row">${v.productNum}</td>
 							<td>${v.productNum }</td>
 							<td><a href="./detail?productNum=${v.productNum }">${v.productName }</td>
 							<td>${v.productRate }</td>
-							<td>${v.productDate }</td>
+							<td>${v.productDetail }</td>
 						</tr>
 					</c:forEach>
 				</tbody>
