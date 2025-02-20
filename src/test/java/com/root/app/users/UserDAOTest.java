@@ -50,5 +50,18 @@ public class UserDAOTest extends SampleTestCase {
 		
 		assertNotNull(userDTO);
 	}
+	
+	@Test
+	public void updateTest() throws Exception {
+		UserDTO userDTO =  new UserDTO();
+		userDTO.setUserName("1");
+		userDTO.setName("asdf");
+		userDTO.setPhone("010-1234-5678");
+		userDTO.setEmail("asdf@qwer.zxcv");
+		
+		int result = userDAO.update(userDTO);
+		
+		assertEquals(1, result);
+	}
 
 }

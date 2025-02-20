@@ -19,5 +19,9 @@ public class UserDAO {
 	public UserDTO getDetail(UserDTO userDTO) throws Exception {
 		return sqlSession.selectOne(NAMESPACE+"getDetail", userDTO);
 	}
+	
+	public int update(UserDTO userDTO) throws Exception {
+		return sqlSession.update(NAMESPACE+"update", userDTO);
+	}
 
 }

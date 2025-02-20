@@ -15,5 +15,9 @@
 	<select id="getDetail" parameterType="UserDTO" resultType="UserDTO">
 		SELECT * FROM USERS WHERE USERNAME = #{userName}
 	</select>
+	
+	<update id="update" parameterType="UserDTO">
+		UPDATE USERS SET NAME = #{name}, PHONE = #{phone}, EMAIL = #{email} WHERE USERNAME = #{userName}
+	</update>
 
 </mapper>

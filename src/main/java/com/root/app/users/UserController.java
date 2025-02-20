@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -63,9 +64,26 @@ public class UserController {
 	
 	@RequestMapping(value = "mypage", method = RequestMethod.GET)
 	public UserDTO mypage(UserDTO userDTO, HttpSession session) throws Exception {
-		userDTO = (UserDTO)session.getAttribute("user");
-		return userDTO;
+		return (UserDTO)session.getAttribute("user");
 	}
 	
+	@RequestMapping(value = "update", method = RequestMethod.GET)
+	public UserDTO update(UserDTO userDTO, HttpSession session) throws Exception {
+		return (UserDTO)session.getAttribute("user");
+	}
+	
+	
+	@RequestMapping(value = "update", method = RequestMethod.POST)
+	public String update(UserDTO userDTO, HttpSession session, Model model) throws Exception {
+		UserDTO user = (UserDTO)session.getAttribute("user");
+		userDTO.setUserName(user.getUserName());
+		int result = userService.update(userDTO);
+		
+		if(result > 0) {
+			session.setAttribute("user", userDTO);
+			return "redirect:./mypage";
+		}
+		return "./update";
+	}
 
 }

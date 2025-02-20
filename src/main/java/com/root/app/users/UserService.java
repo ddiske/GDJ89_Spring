@@ -30,5 +30,8 @@ public class UserService {
 		return userDAO.getDetail(userDTO);
 	}
 	
+	public int update(UserDTO userDTO) throws Exception {
+		return userDAO.update(userDTO);
+	}
 
 }
