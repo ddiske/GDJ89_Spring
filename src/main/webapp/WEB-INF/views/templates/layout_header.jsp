@@ -31,7 +31,18 @@
 									<li><a class="dropdown-item" href="#">Another action</a></li>
 									<li><a class="dropdown-item" href="#">Something else
 											here</a></li>
-								</ul></li>
+								</ul>
+							</li>
+							<ul class="navbar-nav">
+							<li class="nav-item">
+								<a class="nav-link active"
+								aria-current="page" href="/users/login">로그인</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link active"
+								aria-current="page" href="/users/join">회원가입</a>
+							</li>
+							</ul>
 						</ul>
 					</div>
 				</div>
