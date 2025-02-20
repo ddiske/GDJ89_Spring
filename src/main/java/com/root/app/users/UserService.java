@@ -12,5 +12,9 @@ public class UserService {
 	public int join(UserDTO userDTO) throws Exception {
 		return userDAO.join(userDTO);
 	}
+	
+	public UserDTO login(UserDTO userDTO) throws Exception {
+		return userDAO.login(userDTO);
+	}
 
 }

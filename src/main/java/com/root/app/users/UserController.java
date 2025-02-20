@@ -14,8 +14,8 @@ public class UserController {
 	private UserService userService;
 	
 	@RequestMapping(value = "join", method = RequestMethod.GET)
-	public String join() throws Exception {
-		return "/users/join";
+	public void join() throws Exception {
+		
 	}
 	
 	@RequestMapping(value = "join", method = RequestMethod.POST)
@@ -27,6 +27,18 @@ public class UserController {
 		}
 		
 		return path;
+	}
+	
+	
+	@RequestMapping(value = "login", method = RequestMethod.GET)
+	public String login(UserDTO userDTO) throws Exception {
+		return "/users/login";
+	}
+	
+	@RequestMapping(value = "login", method = RequestMethod.POST)
+	public ModelAndView login2(UserDTO userDTO) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		return mv;
 	}
 	
 

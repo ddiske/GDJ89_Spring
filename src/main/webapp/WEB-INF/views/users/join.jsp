@@ -42,7 +42,7 @@
 						<input type="email" class="form-control" id="floatingInputGroup1"
 							placeholder="" name="email"> <label for="floatingInputGroup1"></label>
 					</div>
-					<button class="btn btn-outline-success">등록하기</button>
+					<button class="btn btn-outline-success">회원가입</button>
 				</div>
 			</form>
 		</div>
