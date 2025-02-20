@@ -14,7 +14,21 @@ public class UserService {
 	}
 	
 	public UserDTO login(UserDTO userDTO) throws Exception {
-		return userDAO.login(userDTO);
+//		result는 username(id)만 비교
+		UserDTO result = userDAO.getDetail(userDTO);
+		if(result != null) {
+			if(result.getPassWord().equals(userDTO.getPassWord())) {
+				return result;
+			}
+		}
+		
+		return null;
+		
 	}
+	
+	public UserDTO getDetail(UserDTO userDTO) throws Exception {
+		return userDAO.getDetail(userDTO);
+	}
+	
 
 }

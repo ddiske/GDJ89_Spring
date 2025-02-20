@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <header class="container-fluid ">
 	<div class="row">
 		<nav
@@ -34,6 +35,7 @@
 								</ul>
 							</li>
 							<ul class="navbar-nav">
+							<c:if test="${empty user }">
 							<li class="nav-item">
 								<a class="nav-link active"
 								aria-current="page" href="/users/login">로그인</a>
@@ -42,6 +44,17 @@
 								<a class="nav-link active"
 								aria-current="page" href="/users/join">회원가입</a>
 							</li>
+							</c:if>
+							<c:if test="${not empty user }">
+							<li class="nav-item">
+								<a class="nav-link active"
+								aria-current="page" href="/users/mypage">My Page</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link active"
+								aria-current="page" href="/users/logout">로그아웃</a>
+							</li>
+							</c:if>
 							</ul>
 						</ul>
 					</div>

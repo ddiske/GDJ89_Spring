@@ -1,7 +1,10 @@
 package com.root.app.users;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -31,14 +34,37 @@ public class UserController {
 	
 	
 	@RequestMapping(value = "login", method = RequestMethod.GET)
-	public String login(UserDTO userDTO) throws Exception {
-		return "/users/login";
+	public void login(UserDTO userDTO) throws Exception {
+		
 	}
 	
 	@RequestMapping(value = "login", method = RequestMethod.POST)
-	public ModelAndView login2(UserDTO userDTO) throws Exception {
-		ModelAndView mv = new ModelAndView();
-		return mv;
+	public String login(UserDTO userDTO, HttpSession session, Model model) throws Exception {
+		userDTO = userService.login(userDTO);
+		if(userDTO != null) {
+			session.setAttribute("user", userDTO);
+			return "redirect:/";
+		}
+		model.addAttribute("result", "로그인 실패");
+		model.addAttribute("path", "./login");
+		
+		return "commons/result";
+	}
+	
+	@RequestMapping(value = "logout", method = RequestMethod.GET)
+	public String logout(HttpSession session, Model model) throws Exception {
+		session.invalidate();
+		
+		model.addAttribute("result", "로그아웃 되었습니다");
+		model.addAttribute("path", "/");
+		
+		return "commons/result";
+	}
+	
+	@RequestMapping(value = "mypage", method = RequestMethod.GET)
+	public UserDTO mypage(UserDTO userDTO, HttpSession session) throws Exception {
+		userDTO = (UserDTO)session.getAttribute("user");
+		return userDTO;
 	}
 	
 
