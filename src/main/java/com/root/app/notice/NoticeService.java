@@ -30,5 +30,9 @@ public class NoticeService {
 	public int delete(NoticeDTO noticeDTO) throws Exception {
 		return noticeDAO.delete(noticeDTO);
 	}
+	
+	public int updateHit(NoticeDTO noticeDTO) throws Exception {
+		return noticeDAO.updateHit(noticeDTO);
+	}
 
 }

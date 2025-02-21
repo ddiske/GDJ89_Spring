@@ -34,6 +34,7 @@ public class NoticeController {
 	
 	@RequestMapping(value = "detail", method = RequestMethod.GET)
 	public NoticeDTO getDetail(NoticeDTO noticeDTO) throws Exception {
+		noticeService.updateHit(noticeDTO);
 		return noticeService.getDetail(noticeDTO);
 	}
 	

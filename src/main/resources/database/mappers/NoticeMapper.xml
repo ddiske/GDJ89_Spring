@@ -20,5 +20,8 @@
 	<delete id="delete" parameterType="NoticeDTO">
 		DELETE NOTICE WHERE BOARDNUM = #{boardNum}
 	</delete>
+	<update id="updateHit">
+		UPDATE NOTICE SET BOARDHIT = BOARDHIT+1 WHERE BOARDNUM = #{boardNum}
+	</update>
 
 </mapper>

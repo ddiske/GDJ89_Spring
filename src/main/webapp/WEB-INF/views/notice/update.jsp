@@ -28,7 +28,7 @@
 					<span class="input-group-text">내용</span>
 					<div class="form-control">
 						<input type="text" class="form-control" id="floatingInputGroup1"
-							placeholder="${noticeDTO.boardContents}"
+							placeholder=""
 							value="${noticeDTO.boardContents}" name="boardContents"> <label
 							for="floatingInputGroup1"></label>
 					</div>
