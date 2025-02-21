@@ -21,7 +21,7 @@
 								aria-current="page" href="/">Home</a></li>
 							<li class="nav-item"><a class="nav-link"
 								href="/products/list">Products</a></li>
-							<li class="nav-item"><a class="nav-link" href="#">Pricing</a>
+							<li class="nav-item"><a class="nav-link" href="/notice/list">Notice</a>
 							</li>
 							<li class="nav-item dropdown"><a
 								class="nav-link dropdown-toggle" href="#" role="button"

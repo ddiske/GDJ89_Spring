@@ -8,5 +8,6 @@
 	<typeAliases>
 		<typeAlias type="com.root.app.users.UserDTO" alias="UserDTO"/>
 		<typeAlias type="com.root.app.products.ProductDTO" alias="ProductDTO"/>
+		<typeAlias type="com.root.app.notice.NoticeDTO" alias="NoticeDTO"/>
 	</typeAliases>
 </configuration>
