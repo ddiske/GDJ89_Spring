@@ -44,15 +44,15 @@
 			<nav aria-label="Page navigation example">
 			  <ul class="pagination">
 			    <li class="page-item">
-			      <a class="page-link" href="./list?page=${i }" aria-label="Previous">
+			      <a class="page-link" href="./list?page=${pager.startBlock-1 }" aria-label="Previous">
 			        <span aria-hidden="true">&laquo;</span>
 			      </a>
 			    </li>
-			    <c:forEach begin="1" end="${pager.totalPage }" var="i">
+			    <c:forEach begin="${pager.startBlock }" end="${pager.endBlock }" var="i">
 			    	<li class="page-item"><a class="page-link" href="./list?page=${i }">${i }</a></li>
 			    </c:forEach>
-			    <li class="page-item">
-			      <a class="page-link" href="./list?page=${i }" aria-label="Next">
+			    <li class="page-item ${pager.endCheck?'disabled':'' }">
+			      <a class="page-link" href="./list?page=${pager.endBlock+1 }" aria-label="Next">
 			        <span aria-hidden="true">&raquo;</span>
 			      </a>
 			    </li>

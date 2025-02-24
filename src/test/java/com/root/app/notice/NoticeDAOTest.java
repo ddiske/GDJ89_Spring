@@ -16,12 +16,12 @@ public class NoticeDAOTest extends SampleTestCase {
 	private NoticeDAO noticeDAO;
 	
 //	@Test
-	public void getListTest() throws Exception {
-		List<NoticeDTO> ar = new ArrayList<NoticeDTO>();
-		ar = noticeDAO.getList();
-		
-		assertNotEquals(0, ar.size());
-	}
+//	public void getListTest() throws Exception {
+//		List<NoticeDTO> ar = new ArrayList<NoticeDTO>();
+//		ar = noticeDAO.getList();
+//		
+//		assertNotEquals(0, ar.size());
+//	}
 	
 //	@Test
 	public void getDetailTest() throws Exception {
@@ -34,13 +34,22 @@ public class NoticeDAOTest extends SampleTestCase {
 	
 //	@Test
 	public void addTest() throws Exception {
-		NoticeDTO noticeDTO = new NoticeDTO();
-		noticeDTO.setUserName("test");
-		noticeDTO.setBoardTitle("addTest");
-		noticeDTO.setBoardContents("addTest");
-		int result = noticeDAO.add(noticeDTO);
 		
-		assertEquals(1, result);
+		for(int i = 1; i <= 100; i++) {
+			
+			NoticeDTO noticeDTO = new NoticeDTO();
+			noticeDTO.setUserName("admin");
+			noticeDTO.setBoardTitle("addTest"+i);
+			noticeDTO.setBoardContents("addTest"+i);
+			noticeDAO.add(noticeDTO);
+			
+			if(i%10 == 0) {
+				Thread.sleep(500);
+			}
+			
+		}
+		
+//		assertEquals(1, result);
 	}
 	
 //	@Test

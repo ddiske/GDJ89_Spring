@@ -11,6 +11,10 @@ public class Pager {
 	
 	private Long totalPage;
 	
+	private Long startBlock;
+	private Long endBlock;
+	
+	private boolean endCheck;
 
 
 	public void makeNum() {
@@ -23,6 +27,30 @@ public class Pager {
 			this.page = 1L;
 		}
 		return page;
+	}
+	
+	public boolean isEndCheck() {
+		return endCheck;
+	}
+	
+	public void setEndCheck(boolean endCheck) {
+		this.endCheck = endCheck;
+	}
+	
+	public Long getStartBlock() {
+		return startBlock;
+	}
+
+	public void setStartBlock(Long startBlock) {
+		this.startBlock = startBlock;
+	}
+
+	public Long getEndBlock() {
+		return endBlock;
+	}
+
+	public void setEndBlock(Long endBlock) {
+		this.endBlock = endBlock;
 	}
 	
 	public Long getTotalPage() {

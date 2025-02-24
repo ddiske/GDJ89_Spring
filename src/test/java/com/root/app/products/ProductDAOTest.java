@@ -53,12 +53,12 @@ public class ProductDAOTest extends SampleTestCase {
 	}
 	
 //	@Test
-	public void getListTest() throws Exception {
-		System.out.println("getListTest");
-		List<ProductDTO> ar = productDAO.getList();
-		
-		assertNotEquals(0, ar.size());
-	}
+//	public void getListTest() throws Exception {
+//		System.out.println("getListTest");
+//		List<ProductDTO> ar = productDAO.getList();
+//		
+//		assertNotEquals(0, ar.size());
+//	}
 	
 	@Test(expected = Exception.class)
 	public void addTest() throws Exception {
