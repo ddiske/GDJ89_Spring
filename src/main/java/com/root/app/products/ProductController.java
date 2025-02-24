@@ -6,9 +6,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.root.app.pages.Pager;
 
 @Controller
 @RequestMapping(value = "/products/*")
@@ -23,10 +27,11 @@ public class ProductController {
 //	java -> jsp로 데이터를 전달할 때 사용
 	
 	@RequestMapping(value = "list", method = RequestMethod.GET)
-	public String getList(Model model) throws Exception {
+	public String getList(Model model, Pager pager) throws Exception {
 		
-		List<ProductDTO> ar = productService.getList();
+		List<ProductDTO> ar = productService.getList(pager);
 		model.addAttribute("list", ar);
+		model.addAttribute("pager", pager);
 		
 		return "products/list";
 	}

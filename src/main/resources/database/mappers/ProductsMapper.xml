@@ -13,8 +13,14 @@
 		SELECT * FROM PRODUCTS WHERE PRODUCTNUM = #{productNum}
 	</select>
 	
-	<select id="getList" resultType="ProductDTO">
-		SELECT * FROM PRODUCTS
+	<select id="getList" resultType="ProductDTO" parameterType="Pager">
+		SELECT * FROM (
+			SELECT ROWNUM R, M.* FROM (
+			SELECT * FROM PRODUCTS
+			ORDER BY PRODUCTNUM DESC
+			) M
+		)
+		WHERE R BETWEEN #{startNum} AND #{endNum}
 	</select>
 	
 	<insert id="add" parameterType="ProductDTO">
@@ -29,4 +35,8 @@
 	<delete id="delete" parameterType="ProductDTO">
 		DELETE PRODUCTS WHERE PRODUCTNUM = #{productNum}
 	</delete>
+	
+	<select id="getTotalCount" resultType="Long">
+		SELECT COUNT(PRODUCTNUM) FROM PRODUCTS
+	</select>
 </mapper>

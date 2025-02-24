@@ -41,6 +41,24 @@
 				</tbody>
 			</table>
 			
+			<nav aria-label="Page navigation example">
+			  <ul class="pagination">
+			    <li class="page-item">
+			      <a class="page-link" href="./list?page=${i }" aria-label="Previous">
+			        <span aria-hidden="true">&laquo;</span>
+			      </a>
+			    </li>
+			    <c:forEach begin="1" end="${pager.totalPage }" var="i">
+			    	<li class="page-item"><a class="page-link" href="./list?page=${i }">${i }</a></li>
+			    </c:forEach>
+			    <li class="page-item">
+			      <a class="page-link" href="./list?page=${i }" aria-label="Next">
+			        <span aria-hidden="true">&raquo;</span>
+			      </a>
+			    </li>
+			  </ul>
+			</nav>
+			
 			<a href="./add" class="btn btn-primary">상품 등록</a>
 
 		</div>

@@ -9,5 +9,6 @@
 		<typeAlias type="com.root.app.users.UserDTO" alias="UserDTO"/>
 		<typeAlias type="com.root.app.products.ProductDTO" alias="ProductDTO"/>
 		<typeAlias type="com.root.app.notice.NoticeDTO" alias="NoticeDTO"/>
+		<typeAlias type="com.root.app.pages.Pager" alias="Pager"/>
 	</typeAliases>
 </configuration>
