@@ -1,5 +1,6 @@
 package com.root.app.notice;
 
+import java.io.Reader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.root.app.pages.Pager;
 import com.root.app.users.UserDTO;
 
 import oracle.jdbc.aq.AQNotificationEvent;
@@ -24,9 +26,10 @@ public class NoticeController {
 	private NoticeService noticeService;
 	
 	@RequestMapping(value = "list", method = RequestMethod.GET)
-	public ModelAndView getList() throws Exception {
+	public ModelAndView getList(Pager pager) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("list", noticeService.getList());
+		mv.addObject("list", noticeService.getList(pager));
+		mv.addObject("pager", pager);
 		mv.setViewName("/notice/list");
 		
 		return mv;
@@ -51,12 +54,12 @@ public class NoticeController {
 	}
 	
 	@RequestMapping(value = "add", method = RequestMethod.POST)
-	public ModelAndView add(NoticeDTO noticeDTO, HttpSession session) throws Exception {
+	public ModelAndView add(NoticeDTO noticeDTO, HttpSession session, Pager pager) throws Exception {
 		UserDTO userDTO = (UserDTO)session.getAttribute("user");
 		noticeDTO.setUserName(userDTO.getUserName());
 		noticeService.add(noticeDTO);
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("list", noticeService.getList());
+		mv.addObject("list", noticeService.getList(pager));
 		mv.setViewName("redirect:./list");
 		return mv;
 	}

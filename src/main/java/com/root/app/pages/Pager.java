@@ -15,8 +15,44 @@ public class Pager {
 	private Long endBlock;
 	
 	private boolean endCheck;
+	
+	private String kind;
+	private String search;
 
 
+	public void make(Long totalCount) {
+		
+		// TotalPage 계산
+		Long totalPage = totalCount/10;
+		if(totalCount % 10 != 0) {
+			totalPage++;
+		}
+		
+		// TotalBlock
+		Long totalBlock = totalPage / 5;
+		if(totalPage/5 != 0) {
+			totalBlock++;
+		}
+		
+		// Page 번호로 Block 계산
+		Long curBlock = (this.getPage() + 4) / 5;
+		
+		// curBlock으로 시작번호와 끝번호 계산
+		Long startBlock = (curBlock-1)*5 + 1;
+		Long endBlock = curBlock*5;
+		
+		this.setTotalPage(totalPage);
+		this.setStartBlock(startBlock);
+		this.setEndBlock(endBlock);
+		this.makeNum();
+		
+		if(totalBlock == curBlock) {
+			this.setEndBlock(totalPage);
+			this.setEndCheck(true);
+		}
+	}
+	
+	
 	public void makeNum() {
 		startNum = (getPage()-1) * getPerPage() + 1;
 		endNum = getPage() * getPerPage();
@@ -29,6 +65,32 @@ public class Pager {
 		return page;
 	}
 	
+	public String getKind() {
+		if(this.kind == null) {
+			this.kind = "k1";
+		}
+		return kind;
+	}
+
+
+	public void setKind(String kind) {
+		this.kind = kind;
+	}
+
+
+	public String getSearch() {
+		if(this.search == null) {
+			this.search = "";
+		}
+		return search;
+	}
+
+
+	public void setSearch(String search) {
+		this.search = search;
+	}
+
+
 	public boolean isEndCheck() {
 		return endCheck;
 	}

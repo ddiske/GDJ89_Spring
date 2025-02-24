@@ -9,13 +9,33 @@
 <c:import url="/WEB-INF/views/templates/boot_css.jsp"></c:import>
 </head>
 <style>
-	a {
-		text-decoration: none;
-		color: black;
-	}
+a {
+	text-decoration: none;
+	color: black;
+}
 </style>
 <body>
 	<c:import url="/WEB-INF/views/templates/layout_header.jsp"></c:import>
+	
+	<form class="row row-cols-lg-auto g-3 align-items-center my-5" action="./list">
+	
+	  <div class="col-12">
+	    <label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
+	    <select class="form-select" id="inlineFormSelectPref" name="kind">
+	      <option value="k1">제목</option>
+	      <option value="k2">내용</option>
+	      <option value="k3">제목+내용</option>
+	    </select>
+	  </div>
+	  <div class="col-12">
+	    <label class="visually-hidden" for="inlineFormInputGroupUsername">Username</label>
+	      <input type="text" name="search" class="form-control" id="inlineFormInputGroupUsername" placeholder="검색어를 입력하세요">
+	  </div>
+	
+	  <div class="col-12">
+	    <button type="submit" class="btn btn-primary">Submit</button>
+	  </div>
+	</form>
 
 	<div class="container-fluid my-5">
 		<div class="row col-md-8 offset-md-2">
@@ -42,17 +62,21 @@
 					</c:forEach>
 				</tbody>
 			</table>
-			
+
 			<a href="./add" class="btn btn-primary">새 글 작성</a>
-			
+
 			<nav aria-label="Page navigation example">
-			  <ul class="pagination">
-			    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-			    <c:forEach begin="1" end="">
-			    <li class="page-item"><a class="page-link" href="#">1</a></li>
-			    </c:forEach>
-			    <li class="page-item"><a class="page-link" href="#">Next</a></li>
-			  </ul>
+				<ul class="pagination">
+					<li class="page-item"><a class="page-link"
+						href="./list?page=${pager.startBlock-1 }">Previous</a></li>
+					<c:forEach begin="${pager.startBlock }" end="${pager.endBlock }"
+						var="i">
+						<li class="page-item "><a class="page-link"
+							href="./list?page=${i }">${i }</a></li>
+					</c:forEach>
+					<li class="page-item ${pager.endCheck?'disabled':'' }"><a
+						class="page-link" href="./list?page=${pager.endBlock+1 }">Next</a></li>
+				</ul>
 			</nav>
 
 		</div>

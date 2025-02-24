@@ -29,5 +29,8 @@
 	<update id="updateHit">
 		UPDATE NOTICE SET BOARDHIT = BOARDHIT+1 WHERE BOARDNUM = #{boardNum}
 	</update>
+	<select id="totalCount" resultType="Long">
+		SELECT COUNT(BOARDNUM) FROM NOTICE
+	</select>
 
 </mapper>

@@ -20,34 +20,7 @@ public class ProductService {
 		
 		Long totalCount = productDAO.getTotalCount();
 		
-		// TotalPage 계산
-		Long totalPage = totalCount/10;
-		if(totalCount % 10 != 0) {
-			totalPage++;
-		}
-		
-		// TotalBlock
-		Long totalBlock = totalPage / 5;
-		if(totalPage/5 != 0) {
-			totalBlock++;
-		}
-		
-		// Page 번호로 Block 계산
-		Long curBlock = (pager.getPage() + 4) / 5;
-		
-		// curBlock으로 시작번호와 끝번호 계산
-		Long startBlock = (curBlock-1)*5 + 1;
-		Long endBlock = curBlock*5;
-		
-		pager.setTotalPage(totalPage);
-		pager.setStartBlock(startBlock);
-		pager.setEndBlock(endBlock);
-		pager.makeNum();
-		
-		if(totalBlock == curBlock) {
-			pager.setEndBlock(totalPage);
-			pager.setEndCheck(true);
-		}
+		pager.make(totalCount);
 		
 		return productDAO.getList(pager);
 		
