@@ -27,11 +27,13 @@
 						<input type="password" class="form-control" id="floatingInputGroup1"
 							placeholder="" name="passWord"> <label for="floatingInputGroup1"></label>
 					</div>
-					<button class="btn btn-outline-success">로그인</button>
+					<button class="btn btn-outline-success" type="button">로그인</button>
 				</div>
 			</form>
 		</div>
 	</div>
+
+	<script src="/resources/js/login.js"></script>
 
 	<c:import url="/WEB-INF/views/templates/layout_footer.jsp"></c:import>
 	<c:import url="/WEB-INF/views/templates/boot_js.jsp"></c:import>
