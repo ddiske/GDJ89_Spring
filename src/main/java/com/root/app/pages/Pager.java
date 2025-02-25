@@ -23,8 +23,8 @@ public class Pager {
 	public void make(Long totalCount) {
 		
 		// TotalPage 계산
-		Long totalPage = totalCount/10;
-		if(totalCount % 10 != 0) {
+		Long totalPage = totalCount/this.getPerPage();
+		if(totalCount % this.getPerPage() != 0) {
 			totalPage++;
 		}
 		
@@ -35,20 +35,20 @@ public class Pager {
 		}
 		
 		// Page 번호로 Block 계산
-		Long curBlock = (this.getPage() + 4) / 5;
+		Long curBlock = (getPage() + 4) / 5;
 		
 		// curBlock으로 시작번호와 끝번호 계산
 		Long startBlock = (curBlock-1)*5 + 1;
 		Long endBlock = curBlock*5;
 		
-		this.setTotalPage(totalPage);
-		this.setStartBlock(startBlock);
-		this.setEndBlock(endBlock);
+//		setTotalPage(totalPage);
+		setStartBlock(startBlock);
+		setEndBlock(endBlock);
 		this.makeNum();
 		
 		if(totalBlock == curBlock) {
-			this.setEndBlock(totalPage);
-			this.setEndCheck(true);
+			setEndBlock(totalPage);
+			setEndCheck(true);
 		}
 	}
 	

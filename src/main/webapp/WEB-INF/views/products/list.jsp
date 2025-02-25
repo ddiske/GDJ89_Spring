@@ -17,7 +17,7 @@
 <body>
 	<c:import url="/WEB-INF/views/templates/layout_header.jsp"></c:import>
 	
-		<form class="row row-cols-lg-auto g-3 align-items-center my-5" action="./list">
+		<form class="row row-cols-lg-auto g-3 align-items-center my-5 offset-md-2" action="./list">
 	
 		  <div class="col-12">
 		    <label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
@@ -64,15 +64,15 @@
 			<nav aria-label="Page navigation example">
 			  <ul class="pagination">
 			    <li class="page-item">
-			      <a class="page-link" href="./list?page=${pager.startBlock-1 }" aria-label="Previous">
+			      <a class="page-link" href="./list?page=${pager.startBlock-1 }&kind=${pager.kind}&search=${pager.search}" aria-label="Previous">
 			        <span aria-hidden="true">&laquo;</span>
 			      </a>
 			    </li>
 			    <c:forEach begin="${pager.startBlock }" end="${pager.endBlock }" var="i">
-			    	<li class="page-item"><a class="page-link" href="./list?page=${i }">${i }</a></li>
+			    	<li class="page-item"><a class="page-link" href="./list?page=${i }&kind=${pager.kind}&search=${pager.search}">${i }</a></li>
 			    </c:forEach>
 			    <li class="page-item ${pager.endCheck?'disabled':'' }">
-			      <a class="page-link" href="./list?page=${pager.endBlock+1 }" aria-label="Next">
+			      <a class="page-link" href="./list?page=${pager.endBlock+1 }&kind=${pager.kind}&search=${pager.search}" aria-label="Next">
 			        <span aria-hidden="true">&raquo;</span>
 			      </a>
 			    </li>
