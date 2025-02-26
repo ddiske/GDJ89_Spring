@@ -18,7 +18,7 @@ a {
 	<c:import url="/WEB-INF/views/templates/layout_header.jsp"></c:import>
 	
 	<form class="row row-cols-lg-auto g-3 align-items-center my-5" action="./list">
-	
+		<input type="hidden" name="page" id="pageNum">
 	  <div class="col-12">
 	    <label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
 	    <select class="form-select" id="inlineFormSelectPref" name="kind">

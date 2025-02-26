@@ -1,21 +1,17 @@
 /**
  * 
  */
- 
-const btn = document.getElementsByClassName("btn");
-const id = document.getElementsByName("userName");
-const pw = document.getElementsByName("passWord");
+const login_form = document.getElementById("login_form");
+const login_btn = document.getElementById("login_btn");
+const id = document.getElementById("id");
+const pw = document.getElementById("pw");
 
 
-btn[0].addEventListener("click", function(){
-    if(id[0].value != "" && pw[0].value != ""){
-        console.log(id[0].value);
-        console.log(pw[0].value);
-        alert("ID : "+id[0].value+
-            "PW : "+pw[0].value
-        );
+login_btn.addEventListener("click", function(){
+    if(id.value != "" && pw.value != ""){
+        login_form.submit();
     }else{
-        alert("다시 입력")
-
+        alert("ID와 PW를 입력하세요")
+        id.focus();
     }
 })

@@ -48,7 +48,7 @@
 			
 			<choose>
 				<when test="kind == 'k1'">PRODUCTNAME LIKE '%'||#{search}||'%'</when>
-				<when test="kind == 'k2'">PRODUCTDETTAIL LIKE '%'||#{search}||'%'</when>
+				<when test="kind == 'k2'">PRODUCTDETAIL LIKE '%'||#{search}||'%'</when>
 				<otherwise>
 					PRODUCTNAME LIKE '%'||#{search}||'%' OR PRODUCTDETAIL LIKE '%'||#{search}||'%'
 				</otherwise>

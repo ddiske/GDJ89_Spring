@@ -17,19 +17,19 @@
 <body>
 	<c:import url="/WEB-INF/views/templates/layout_header.jsp"></c:import>
 	
-		<form class="row row-cols-lg-auto g-3 align-items-center my-5 offset-md-2" action="./list">
-	
+		<form id="list_form" class="row row-cols-lg-auto g-3 align-items-center my-5 offset-md-2" action="./list">
+			<input type="hidden" name="page" id="pageNum">
 		  <div class="col-12">
 		    <label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
 		    <select class="form-select" id="inlineFormSelectPref" name="kind">
-		      <option value="k1">제목</option>
-		      <option value="k2">내용</option>
-		      <option value="k3">제목+내용</option>
+		      <option value="k1" ${pager.kind eq 'k1' ? 'selected': '' }>제목</option>
+		      <option value="k2" ${pager.kind eq 'k2' ? 'selected': '' }>내용</option>
+		      <option value="k3" ${pager.kind eq 'k3' ? 'selected': '' }>제목+내용</option>
 		    </select>
 		  </div>
 		  <div class="col-12">
 		    <label class="visually-hidden" for="inlineFormInputGroupUsername">Username</label>
-		      <input type="text" name="search" class="form-control" id="inlineFormInputGroupUsername" placeholder="검색어를 입력하세요">
+		      <input type="text" value="${pager.search}" name="search" class="form-control" id="inlineFormInputGroupUsername" placeholder="검색어를 입력하세요">
 		  </div>
 		
 		  <div class="col-12">
@@ -64,17 +64,17 @@
 			<nav aria-label="Page navigation example">
 			  <ul class="pagination">
 			    <li class="page-item">
-			      <a class="page-link" href="./list?page=${pager.startBlock-1 }&kind=${pager.kind}&search=${pager.search}" aria-label="Previous">
+			      <button class="page-link pages" data-page-num = "${pager.startBlock-1 }" aria-label="Previous">
 			        <span aria-hidden="true">&laquo;</span>
-			      </a>
+				  </button>
 			    </li>
 			    <c:forEach begin="${pager.startBlock }" end="${pager.endBlock }" var="i">
-			    	<li class="page-item"><a class="page-link" href="./list?page=${i }&kind=${pager.kind}&search=${pager.search}">${i }</a></li>
+			    	<li class="page-item"><button class="page-link pages" data-page-num = "${i } ">${i }</button></li>
 			    </c:forEach>
 			    <li class="page-item ${pager.endCheck?'disabled':'' }">
-			      <a class="page-link" href="./list?page=${pager.endBlock+1 }&kind=${pager.kind}&search=${pager.search}" aria-label="Next">
+			      <button class="page-link pages" data-page-num = "${pager.endBlock+1 }" aria-label="Next">
 			        <span aria-hidden="true">&raquo;</span>
-			      </a>
+				  </button>
 			    </li>
 			  </ul>
 			</nav>
@@ -84,6 +84,7 @@
 		</div>
 	</div>
 
+	<script src="/resources/js/list.js"></script>
 	<c:import url="/WEB-INF/views/templates/layout_footer.jsp"></c:import>
 	<c:import url="/WEB-INF/views/templates/boot_js.jsp"></c:import>
 </body>

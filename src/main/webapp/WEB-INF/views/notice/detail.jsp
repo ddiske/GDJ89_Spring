@@ -21,12 +21,16 @@
 			<h6>${noticeDTO.boardDate }</h6>
 			<h6>${noticeDTO.boardHit }</h6>
 			<c:if test="${user.userName eq (noticeDTO.userName or admin) }">
-				<a href="./update?boardNum=${noticeDTO.boardNum }">수정하기</a>
-				<a href="./delete?boardNum=${noticeDTO.boardNum }">삭제하기</a>
+				<form id="frm" action="">
+					<input type="hidden" name="boardNum" value="${noticeDTO.boardNum}">
+					<button type="button" id="updatebtn">수정하기</a>
+					<button type="button" id="deletebtn">삭제하기</a>
+				</form>
 			</c:if>
 		</div>
 	</div>
 
+	<script src="/resources/js/detail.js"></script>
 	<c:import url="/WEB-INF/views/templates/layout_footer.jsp"></c:import>
 	<c:import url="/WEB-INF/views/templates/boot_js.jsp"></c:import>
 </body>
