@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.root.app.qna.QnaDAO">
+	<select id="getList" resultType="QnaDTO" parameterType="Pager">
+		SELECT * FROM (
+			SELECT ROWNUM R, M.* FROM (
+					SELECT * FROM QNA
+					ORDER BY BOARDNUM DESC
+					) M
+			)
+		WHERE R BETWEEN #{startNum} AND #{endNum}
+	</select>
+	<select id="getDetail" resultType="QnaDTO" parameterType="QnaDTO">
+		SELECT * FROM QNA WHERE BOARDNUM = #{boardNum}
+	</select>
+	<insert id="add" parameterType="QnaDTO">
+		INSERT INTO QNA (BOARDNUM, USERNAME, BOARDTITLE, BOARDCONTENTS)
+		VALUES (BOARD_SEQ.NEXTVAL, #{userName}, #{boardTitle}, #{boardContents})
+	</insert>
+	<update id="update" parameterType="QnaDTO">
+		UPDATE QNA SET BOARDTITLE = #{boardTitle}, BOARDCONTENTS = #{boardContents} WHERE BOARDNUM = #{boardNum}
+	</update>
+	<delete id="delete" parameterType="QnaDTO">
+		DELETE QNA WHERE BOARDNUM = #{boardNum}
+	</delete>
+	<update id="updateHit">
+		UPDATE QNA SET BOARDHIT = BOARDHIT+1 WHERE BOARDNUM = #{boardNum}
+	</update>
+	<select id="totalCount" resultType="Long">
+		SELECT COUNT(BOARDNUM) FROM QNA
+	</select>
+
+</mapper>

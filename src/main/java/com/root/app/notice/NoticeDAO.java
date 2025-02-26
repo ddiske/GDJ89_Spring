@@ -39,7 +39,7 @@ public class NoticeDAO {
 		return sqlSession.update(NAMESPCAE+"updateHit", noticeDTO);
 	}
 	
-	public Long getTotalCount() throws Exception {
+	public Long getTotalCount(Pager pager) throws Exception {
 		return sqlSession.selectOne(NAMESPCAE+"totalCount");
 	}
  

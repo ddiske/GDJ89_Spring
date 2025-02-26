@@ -14,27 +14,30 @@
 	<div class="container-fluid my-5">
 		<div class="row col-md-8 offset-md-2">
 			<!-- contents 내용 작성 -->
-			<form action="./login" method="post" id="login_form">
-			<legend>로그인</legend>
+			<form action="./update?boardNum=${qnaDTO.boardNum }"
+				method="post">
+				<legend>작성 글 수정</legend>
 				<div class="input-group mb-3">
-					<span class="input-group-text">UserName</span>
+					<span class="input-group-text">제목</span>
 					<div class="form-control">
-						<input type="text" class="form-control" id="floatingInputGroup1 userName"
-							placeholder="" name="userName"> <label for="floatingInputGroup1"></label>
+						<input type="text" class="form-control" id="floatingInputGroup1"
+							placeholder="${qnaDTO.boardTitle}"
+							value="${qnaDTO.boardTitle}" name="boardTitle"> <label
+							for="floatingInputGroup1"></label>
 					</div>
-					<span class="input-group-text">Password</span>
+					<span class="input-group-text">내용</span>
 					<div class="form-control">
-						<input type="password" class="form-control" id="floatingInputGroup1 passWord"
-							placeholder="" name="passWord"> <label for="floatingInputGroup1"></label>
+						<input type="text" class="form-control" id="floatingInputGroup1"
+							placeholder=""
+							value="${qnaDTO.boardContents}" name="boardContents"> <label
+							for="floatingInputGroup1"></label>
 					</div>
-					<button class="btn btn-outline-success" id="login_btn" type="submit">로그인</button>
+					<button class="btn btn-outline-success">수정하기</button>
 				</div>
 			</form>
 		</div>
 	</div>
 
-	
-	<script src="/resources/js/login.js"></script>
 	<c:import url="/WEB-INF/views/templates/layout_footer.jsp"></c:import>
 	<c:import url="/WEB-INF/views/templates/boot_js.jsp"></c:import>
 </body>

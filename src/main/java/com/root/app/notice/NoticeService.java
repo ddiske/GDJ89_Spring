@@ -15,7 +15,7 @@ public class NoticeService {
 	
 	public List<NoticeDTO> getList(Pager pager) throws Exception {
 		
-		Long totalCount = noticeDAO.getTotalCount();
+		Long totalCount = noticeDAO.getTotalCount(pager);
 		
 		pager.make(totalCount);
 		

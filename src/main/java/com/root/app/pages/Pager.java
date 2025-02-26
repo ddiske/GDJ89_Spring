@@ -46,6 +46,7 @@ public class Pager {
 		setEndBlock(endBlock);
 		this.makeNum();
 		
+		
 		if(totalBlock == curBlock) {
 			setEndBlock(totalPage);
 			setEndCheck(true);
