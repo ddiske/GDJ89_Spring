@@ -19,11 +19,22 @@
 			<h6>${productDTO.productRate }</h6>
 			<h6>${productDTO.productDate }</h6>
 			<h6>${productDTO.productDetail }</h6>
-			<a href="./update?productNum=${productDTO.productNum }">수정하기</a>
-			<a href="./delete?productNum=${productDTO.productNum }">삭제하기</a>
+
+			<div>
+				<form action="/test" id="frm">
+					<input type="hidden" name="productNum" value="${productDTO.productNum}">
+					<button type="button" id="updatebtn">수정</button>
+					<button type="button" id="deletebtn">삭제</button>
+				</form>
+			</div>
+
+
+			<%-- <a href="./update?productNum=${productDTO.productNum }">수정하기</a>
+			<a href="./delete?productNum=${productDTO.productNum }">삭제하기</a> --%>
 		</div>
 	</div>
 
+	<script src="/resources/js/detail.js"></script>
 	<c:import url="/WEB-INF/views/templates/layout_footer.jsp"></c:import>
 	<c:import url="/WEB-INF/views/templates/boot_js.jsp"></c:import>
 </body>
