@@ -6,11 +6,11 @@
 <mapper namespace="com.root.app.qna.QnaDAO">
 	<select id="getList" resultType="QnaDTO" parameterType="Pager">
 		SELECT * FROM (
-			SELECT ROWNUM R, M.* FROM (
-					SELECT * FROM QNA
-					ORDER BY BOARDNUM DESC
-					) M
-			)
+				SELECT ROWNUM R, M.* FROM (
+				SELECT * FROM QNA
+				ORDER BY BOARDNUM DESC
+				) M
+		)
 		WHERE R BETWEEN #{startNum} AND #{endNum}
 	</select>
 	<select id="getDetail" resultType="QnaDTO" parameterType="QnaDTO">

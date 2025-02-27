@@ -27,7 +27,7 @@
 						<input type="password" class="form-control" id="floatingInputGroup1 passWord"
 							placeholder="" name="passWord"> <label for="floatingInputGroup1"></label>
 					</div>
-					<button class="btn btn-outline-success" id="login_btn" type="submit">로그인</button>
+					<button class="btn btn-outline-success" id="login_btn" type="button">로그인</button>
 				</div>
 			</form>
 		</div>
