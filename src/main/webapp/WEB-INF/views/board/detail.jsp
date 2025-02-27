@@ -13,20 +13,23 @@
 
 	<div class="container-fluid my-5">
 		<div class="row col-md-8 offset-md-2">
-			<h1>${kind } Detail Page</h1>
+			<h1>${kind }Detail Page</h1>
 			<h6>${dto.boardNum }</h6>
 			<h6>${dto.boardTitle }</h6>
 			<h6>${dto.boardContents }</h6>
 			<h6>${dto.userName }</h6>
 			<h6>${dto.boardDate }</h6>
 			<h6>${dto.boardHit }</h6>
-			<c:if test="${(user.userName eq dto.userName) or (user.userName eq 'admin') }">
-				<form id="frm" action="">
-					<input type="hidden" name="boardNum" value="${dto.boardNum}">
-					<button type="button" id="updatebtn">수정하기</a>
-					<button type="button" id="deletebtn">삭제하기</a>
-				</form>
-			</c:if>
+
+				<c:if test="${(user.userName eq dto.userName) or (user.userName eq 'admin') }">
+				</c:if>
+			<form id="frm" action="">
+				<input type="hidden" name="boardNum" value="${dto.boardNum}">
+				<button type="button" id="updatebtn">수정하기</button>
+				<button type="button" id="deletebtn">삭제하기</button>
+				<button type="button" id="replybtn">답글달기</button>
+			</form>
+
 		</div>
 	</div>
 

@@ -8,7 +8,7 @@
 		SELECT * FROM (
 				SELECT ROWNUM R, M.* FROM (
 				SELECT * FROM QNA
-				ORDER BY BOARDNUM DESC
+				ORDER BY BOARDREF DESC , BOARDSTEP ASC
 				) M
 		)
 		WHERE R BETWEEN #{startNum} AND #{endNum}
@@ -16,19 +16,33 @@
 	<select id="getDetail" resultType="QnaDTO" parameterType="QnaDTO">
 		SELECT * FROM QNA WHERE BOARDNUM = #{boardNum}
 	</select>
+	
 	<insert id="add" parameterType="QnaDTO">
-		INSERT INTO QNA (BOARDNUM, USERNAME, BOARDTITLE, BOARDCONTENTS)
-		VALUES (BOARD_SEQ.NEXTVAL, #{userName}, #{boardTitle}, #{boardContents})
+		INSERT INTO QNA (BOARDNUM, USERNAME, BOARDTITLE, BOARDCONTENTS, BOARDREF)
+		VALUES (BOARD_SEQ.NEXTVAL, #{userName}, #{boardTitle}, #{boardContents}, BOARD_SEQ.CURRVAL)
 	</insert>
+	
+	<insert id="reply" parameterType="QnaDTO">
+		INSERT INTO QNA (BOARDNUM, USERNAME, BOARDTITLE, BOARDCONTENTS, BOARDREF, BOARDSTEP, BOARDDEPTH)
+		VALUES (BOARD_SEQ.NEXTVAL, #{userName}, #{boardTitle}, #{boardContents}, #{boardRef}, #{boardStep}, #{boardDepth})
+	</insert>
+	
+	<update id="updateStep" parameterType="QnaDTO">
+		UPDATE QNA SET BOARDSTEP = BOARDSTEP+1 WHERE BOARDREF = #{boardRef} AND BOARDSTEP > #{boardStep}
+	</update>
+	
 	<update id="update" parameterType="QnaDTO">
 		UPDATE QNA SET BOARDTITLE = #{boardTitle}, BOARDCONTENTS = #{boardContents} WHERE BOARDNUM = #{boardNum}
 	</update>
+	
 	<delete id="delete" parameterType="QnaDTO">
 		DELETE QNA WHERE BOARDNUM = #{boardNum}
 	</delete>
+	
 	<update id="updateHit">
 		UPDATE QNA SET BOARDHIT = BOARDHIT+1 WHERE BOARDNUM = #{boardNum}
 	</update>
+	
 	<select id="getTotalCount" resultType="Long">
 		SELECT COUNT(BOARDNUM) FROM QNA
 	</select>

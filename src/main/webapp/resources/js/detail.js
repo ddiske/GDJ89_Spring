@@ -1,6 +1,8 @@
 const updatebtn = document.getElementById("updatebtn");
 const deletebtn = document.getElementById("deletebtn");
+const replybtn = document.getElementById("replybtn");
 const frm = document.getElementById("frm");
+const frm2 = document.getElementById("frm2");
 
 
 // 수정 버튼을 클릭했을 때 콘솔에 출력
@@ -27,4 +29,9 @@ deletebtn.addEventListener("click", function(){
         frm.submit();
     }
 
+})
+
+replybtn.addEventListener("click", function(){
+    frm.action = "./reply";
+    frm.submit();
 })

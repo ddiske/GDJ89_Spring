@@ -1,10 +1,13 @@
 package com.root.app.boards.qna;
 
+import java.io.InputStream;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -82,5 +85,20 @@ public class QnaController {
 		
 		return "commons/result";
 	}
+	
+	@RequestMapping(value = "reply", method = RequestMethod.GET)
+	public String reply(@ModelAttribute("dto") BoardDTO boardDTO) throws Exception {
+		return "board/boardForm";
+	}
+	
+	@RequestMapping(value = "reply", method = RequestMethod.POST)
+	public String reply(@ModelAttribute("dto") QnaDTO qnaDTO, HttpSession session) throws Exception {
+		UserDTO user = (UserDTO)session.getAttribute("user");
+		qnaDTO.setUserName(user.getUserName());
+		qnaService.reply(qnaDTO);
+		
+		return "redirect: ./list";
+	}
+
 
 }
