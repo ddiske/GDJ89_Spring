@@ -15,7 +15,7 @@
 		<div class="row col-md-8 offset-md-2">
 			<!-- contents 내용 작성 -->
 			<form action=""	method="post">
-				<legend>작성 글 수정</legend>
+				<legend>${kind } 글 작성</legend>
 				<div class="input-group mb-3">
 				<input type="hidden" name="boardNum" value="${dto.boardNum }">
 					<span class="input-group-text">제목</span>
@@ -32,7 +32,7 @@
 							value="${dto.boardContents}" name="boardContents"> <label
 							for="floatingInputGroup1"></label>
 					</div>
-					<button class="btn btn-outline-success">수정하기</button>
+					<button class="btn btn-outline-success">완료</button>
 				</div>
 			</form>
 		</div>

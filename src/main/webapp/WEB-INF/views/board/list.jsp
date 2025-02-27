@@ -19,6 +19,7 @@ a {
 	
 	<form class="row row-cols-lg-auto g-3 align-items-center my-5 offset-md-2" action="./list">
 		<input type="hidden" name="page" id="pageNum">
+		<h1>${kind }</h1>
 	  <div class="col-12">
 	    <label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
 	    <select class="form-select" id="inlineFormSelectPref" name="kind">

@@ -13,7 +13,7 @@
 
 	<div class="container-fluid my-5">
 		<div class="row col-md-8 offset-md-2">
-			<h1>Notice Detail Page</h1>
+			<h1>${kind } Detail Page</h1>
 			<h6>${dto.boardNum }</h6>
 			<h6>${dto.boardTitle }</h6>
 			<h6>${dto.boardContents }</h6>

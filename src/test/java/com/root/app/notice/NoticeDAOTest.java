@@ -57,7 +57,7 @@ public class NoticeDAOTest extends SampleTestCase {
 //	@Test
 	public void updateTest() throws Exception {
 		NoticeDTO noticeDTO = new NoticeDTO();
-		noticeDTO.setBoardNum(1);
+		noticeDTO.setBoardNum(1L);
 		noticeDTO.setBoardTitle("test");
 		noticeDTO.setBoardContents("test");
 		int result = noticeDAO.update(noticeDTO);
@@ -68,7 +68,7 @@ public class NoticeDAOTest extends SampleTestCase {
 //	@Test
 	public void deleteTest() throws Exception {
 		NoticeDTO noticeDTO = new NoticeDTO();
-		noticeDTO.setBoardNum(2);
+		noticeDTO.setBoardNum(2L);
 		int result = noticeDAO.delete(noticeDTO);
 		
 		assertEquals(1, result);
