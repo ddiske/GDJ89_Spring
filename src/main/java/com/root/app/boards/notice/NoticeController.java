@@ -1,4 +1,4 @@
-package com.root.app.notice;
+package com.root.app.boards.notice;
 
 import java.io.Reader;
 import java.util.ArrayList;
@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.root.app.boards.BoardDTO;
 import com.root.app.pages.Pager;
 import com.root.app.users.UserDTO;
 
-import oracle.jdbc.aq.AQNotificationEvent;
 
 @Controller
 @RequestMapping(value = "/notice/*")
@@ -37,8 +37,9 @@ public class NoticeController {
 	
 	@RequestMapping(value = "detail", method = RequestMethod.GET)
 	public NoticeDTO getDetail(NoticeDTO noticeDTO) throws Exception {
-		noticeService.updateHit(noticeDTO);
-		return noticeService.getDetail(noticeDTO);
+		
+		noticeDTO = (NoticeDTO)noticeService.getDetail(noticeDTO);
+		return noticeDTO;
 	}
 	
 	@RequestMapping(value = "add", method = RequestMethod.GET)
@@ -66,13 +67,14 @@ public class NoticeController {
 	
 	@RequestMapping(value = "update", method = RequestMethod.GET)
 	public NoticeDTO update(NoticeDTO noticeDTO) throws Exception {
-		return noticeService.getDetail(noticeDTO);
+		noticeDTO = (NoticeDTO)noticeService.getDetail(noticeDTO);
+		return noticeDTO;
 	}
 	
 	@RequestMapping(value = "update", method = RequestMethod.POST)
 	public ModelAndView update(NoticeDTO noticeDTO, ModelAndView mv) throws Exception {
 		noticeService.update(noticeDTO);
-		noticeDTO = noticeService.getDetail(noticeDTO);
+		noticeDTO = (NoticeDTO)noticeService.getDetail(noticeDTO);
 		mv.addObject("noticeDTO", noticeDTO);
 		mv.setViewName("/notice/detail");
 		return mv;

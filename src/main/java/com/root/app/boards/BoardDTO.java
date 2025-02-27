@@ -1,23 +1,15 @@
-package com.root.app.qna;
+package com.root.app.boards;
 
 import java.sql.Date;
 
-public class QnaDTO {
-	
-	
+public class BoardDTO {
+
 	private long boardNum;
 	private String userName;
 	private String boardTitle;
 	private String boardContents;
 	private Date boardDate;
 	private long boardHit;
-	private long boardRef;
-	private long boardStep;
-	private long boardDepth;
-	
-	
-	
-	
 	
 	public long getBoardNum() {
 		return boardNum;
@@ -54,24 +46,6 @@ public class QnaDTO {
 	}
 	public void setBoardHit(long boardHit) {
 		this.boardHit = boardHit;
-	}
-	public long getBoardRef() {
-		return boardRef;
-	}
-	public void setBoardRef(long boardRef) {
-		this.boardRef = boardRef;
-	}
-	public long getBoardStep() {
-		return boardStep;
-	}
-	public void setBoardStep(long boardStep) {
-		this.boardStep = boardStep;
-	}
-	public long getBoardDepth() {
-		return boardDepth;
-	}
-	public void setBoardDepth(long boardDepth) {
-		this.boardDepth = boardDepth;
 	}
 	
 }

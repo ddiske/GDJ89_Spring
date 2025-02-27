@@ -30,7 +30,7 @@ public class Pager {
 		
 		// TotalBlock
 		Long totalBlock = totalPage / 5;
-		if(totalPage/5 != 0) {
+		if(totalPage%5 != 0) {
 			totalBlock++;
 		}
 		

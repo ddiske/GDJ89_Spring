@@ -9,6 +9,8 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.root.app.SampleTestCase;
+import com.root.app.boards.notice.NoticeDAO;
+import com.root.app.boards.notice.NoticeDTO;
 
 public class NoticeDAOTest extends SampleTestCase {
 
@@ -24,13 +26,13 @@ public class NoticeDAOTest extends SampleTestCase {
 //	}
 	
 //	@Test
-	public void getDetailTest() throws Exception {
-		NoticeDTO noticeDTO = new NoticeDTO();
-		noticeDTO.setBoardNum(1);
-		noticeDTO = noticeDAO.getDetail(noticeDTO);
-		
-		assertNotNull(noticeDTO);
-	}
+//	public void getDetailTest() throws Exception {
+//		NoticeDTO noticeDTO = new NoticeDTO();
+//		noticeDTO.setBoardNum(1);
+//		noticeDTO = noticeDAO.getDetail(noticeDTO);
+//		
+//		assertNotNull(noticeDTO);
+//	}
 	
 //	@Test
 	public void addTest() throws Exception {

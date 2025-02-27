@@ -8,8 +8,8 @@
 	<typeAliases>
 		<typeAlias type="com.root.app.users.UserDTO" alias="UserDTO"/>
 		<typeAlias type="com.root.app.products.ProductDTO" alias="ProductDTO"/>
-		<typeAlias type="com.root.app.notice.NoticeDTO" alias="NoticeDTO"/>
+		<typeAlias type="com.root.app.boards.notice.NoticeDTO" alias="NoticeDTO"/>
 		<typeAlias type="com.root.app.pages.Pager" alias="Pager"/>
-		<typeAlias type="com.root.app.qna.QnaDTO" alias="QnaDTO"/>
+		<typeAlias type="com.root.app.boards.qna.QnaDTO" alias="QnaDTO"/>
 	</typeAliases>
 </configuration>

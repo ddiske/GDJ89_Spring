@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-<mapper namespace="com.root.app.notice.NoticeDAO">
+<mapper namespace="com.root.app.boards.notice.NoticeDAO">
 	<select id="getList" resultType="NoticeDTO" parameterType="pager">
 		SELECT * FROM (
 			SELECT ROWNUM R, M.* FROM (
@@ -29,7 +29,7 @@
 	<update id="updateHit">
 		UPDATE NOTICE SET BOARDHIT = BOARDHIT+1 WHERE BOARDNUM = #{boardNum}
 	</update>
-	<select id="totalCount" resultType="Long">
+	<select id="getTotalCount" resultType="Long">
 		SELECT COUNT(BOARDNUM) FROM NOTICE
 	</select>
 

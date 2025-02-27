@@ -1,4 +1,4 @@
-package com.root.app.qna;
+package com.root.app.boards.qna;
 
 import javax.servlet.http.HttpSession;
 
@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.root.app.boards.BoardDTO;
 import com.root.app.pages.Pager;
 import com.root.app.users.UserDTO;
 
@@ -53,7 +54,7 @@ public class QnaController {
 	
 	@RequestMapping(value = "update", method = RequestMethod.GET)
 	public void update(QnaDTO qnaDTO) throws Exception {
-		qnaDTO = qnaService.getDetail(qnaDTO);
+		qnaDTO = (QnaDTO)qnaService.getDetail(qnaDTO);
 	}
 	
 	@RequestMapping(value = "update", method = RequestMethod.POST)
