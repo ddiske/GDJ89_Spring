@@ -14,22 +14,22 @@
 	<div class="container-fluid my-5">
 		<div class="row col-md-8 offset-md-2">
 			<!-- contents 내용 작성 -->
-			<form action="./update?boardNum=${noticeDTO.boardNum }"
-				method="post">
+			<form action=""	method="post">
 				<legend>작성 글 수정</legend>
 				<div class="input-group mb-3">
+				<input type="hidden" name="boardNum" value="${dto.boardNum }">
 					<span class="input-group-text">제목</span>
 					<div class="form-control">
 						<input type="text" class="form-control" id="floatingInputGroup1"
-							placeholder="${noticeDTO.boardTitle}"
-							value="${noticeDTO.boardTitle}" name="boardTitle"> <label
+							placeholder="${dto.boardTitle}"
+							value="${dto.boardTitle}" name="boardTitle"> <label
 							for="floatingInputGroup1"></label>
 					</div>
 					<span class="input-group-text">내용</span>
 					<div class="form-control">
 						<input type="text" class="form-control" id="floatingInputGroup1"
 							placeholder=""
-							value="${noticeDTO.boardContents}" name="boardContents"> <label
+							value="${dto.boardContents}" name="boardContents"> <label
 							for="floatingInputGroup1"></label>
 					</div>
 					<button class="btn btn-outline-success">수정하기</button>

@@ -14,7 +14,7 @@
 	<div class="container-fluid my-5">
 		<div class="row col-md-8 offset-md-2">
 			<!-- contents 내용 작성 -->
-			<form action="./add" method="post">
+			<form action="" method="post">
 			<legend>새 글 작성</legend>
 				<div class="input-group mb-3">
 					<span class="input-group-text">제목</span>

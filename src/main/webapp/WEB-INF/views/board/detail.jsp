@@ -14,15 +14,15 @@
 	<div class="container-fluid my-5">
 		<div class="row col-md-8 offset-md-2">
 			<h1>Notice Detail Page</h1>
-			<h6>${noticeDTO.boardNum }</h6>
-			<h6>${noticeDTO.boardTitle }</h6>
-			<h6>${noticeDTO.boardContents }</h6>
-			<h6>${noticeDTO.userName }</h6>
-			<h6>${noticeDTO.boardDate }</h6>
-			<h6>${noticeDTO.boardHit }</h6>
-			<c:if test="${(user.userName eq noticeDTO.userName) or (user.userName eq admin) }">
+			<h6>${dto.boardNum }</h6>
+			<h6>${dto.boardTitle }</h6>
+			<h6>${dto.boardContents }</h6>
+			<h6>${dto.userName }</h6>
+			<h6>${dto.boardDate }</h6>
+			<h6>${dto.boardHit }</h6>
+			<c:if test="${(user.userName eq dto.userName) or (user.userName eq 'admin') }">
 				<form id="frm" action="">
-					<input type="hidden" name="boardNum" value="${noticeDTO.boardNum}">
+					<input type="hidden" name="boardNum" value="${dto.boardNum}">
 					<button type="button" id="updatebtn">수정하기</a>
 					<button type="button" id="deletebtn">삭제하기</a>
 				</form>

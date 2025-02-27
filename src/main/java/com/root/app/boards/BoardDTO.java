@@ -4,17 +4,17 @@ import java.sql.Date;
 
 public class BoardDTO {
 
-	private long boardNum;
+	private Long boardNum;
 	private String userName;
 	private String boardTitle;
 	private String boardContents;
 	private Date boardDate;
-	private long boardHit;
+	private Long boardHit;
 	
 	public long getBoardNum() {
 		return boardNum;
 	}
-	public void setBoardNum(long boardNum) {
+	public void setBoardNum(Long boardNum) {
 		this.boardNum = boardNum;
 	}
 	public String getUserName() {
@@ -44,7 +44,7 @@ public class BoardDTO {
 	public long getBoardHit() {
 		return boardHit;
 	}
-	public void setBoardHit(long boardHit) {
+	public void setBoardHit(Long boardHit) {
 		this.boardHit = boardHit;
 	}
 	

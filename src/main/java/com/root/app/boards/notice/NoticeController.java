@@ -30,16 +30,18 @@ public class NoticeController {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("list", noticeService.getList(pager));
 		mv.addObject("pager", pager);
-		mv.setViewName("/notice/list");
+		mv.setViewName("board/list");
 		
 		return mv;
 	}
 	
 	@RequestMapping(value = "detail", method = RequestMethod.GET)
-	public NoticeDTO getDetail(NoticeDTO noticeDTO) throws Exception {
+	public String getDetail(NoticeDTO noticeDTO, Model model) throws Exception {
 		
 		noticeDTO = (NoticeDTO)noticeService.getDetail(noticeDTO);
-		return noticeDTO;
+		
+		model.addAttribute("dto", noticeDTO);
+		return "board/detail";
 	}
 	
 	@RequestMapping(value = "add", method = RequestMethod.GET)
@@ -48,7 +50,7 @@ public class NoticeController {
 			model.addAttribute("result", "로그인 후 작성 가능");
 			model.addAttribute("path", "./list");
 		}else {
-			return "/notice/add";
+			return "board/boardForm";
 		}
 		
 		return "commons/result";
@@ -66,17 +68,18 @@ public class NoticeController {
 	}
 	
 	@RequestMapping(value = "update", method = RequestMethod.GET)
-	public NoticeDTO update(NoticeDTO noticeDTO) throws Exception {
+	public String update(NoticeDTO noticeDTO, Model model) throws Exception {
 		noticeDTO = (NoticeDTO)noticeService.getDetail(noticeDTO);
-		return noticeDTO;
+		model.addAttribute("dto", noticeDTO);
+		return "board/boardForm";
 	}
 	
 	@RequestMapping(value = "update", method = RequestMethod.POST)
 	public ModelAndView update(NoticeDTO noticeDTO, ModelAndView mv) throws Exception {
 		noticeService.update(noticeDTO);
 		noticeDTO = (NoticeDTO)noticeService.getDetail(noticeDTO);
-		mv.addObject("noticeDTO", noticeDTO);
-		mv.setViewName("/notice/detail");
+		mv.addObject("dto", noticeDTO);
+		mv.setViewName("board/detail");
 		return mv;
 	}
 	
@@ -86,10 +89,10 @@ public class NoticeController {
 		
 		if(result > 0) {
 			model.addAttribute("result", "글이 삭제되었습니다");
-			model.addAttribute("path", "/notice/list");
+			model.addAttribute("path", "list");
 		}else {
 			model.addAttribute("result", "삭제 실패");
-			model.addAttribute("path", "/notice/list");
+			model.addAttribute("path", "list");
 		}
 		
 		return "commons/result";

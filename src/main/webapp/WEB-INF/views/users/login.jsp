@@ -19,13 +19,13 @@
 				<div class="input-group mb-3">
 					<span class="input-group-text">UserName</span>
 					<div class="form-control">
-						<input type="text" class="form-control" id="floatingInputGroup1 userName"
-							placeholder="" name="userName"> <label for="floatingInputGroup1"></label>
+						<input type="text" class="form-control" id="userName"
+							placeholder="" name="userName"> <label for="userName"></label>
 					</div>
 					<span class="input-group-text">Password</span>
 					<div class="form-control">
-						<input type="password" class="form-control" id="floatingInputGroup1 passWord"
-							placeholder="" name="passWord"> <label for="floatingInputGroup1"></label>
+						<input type="password" class="form-control" id="passWord"
+							placeholder="" name="passWord"> <label for="passWord"></label>
 					</div>
 					<button class="btn btn-outline-success" id="login_btn" type="button">로그인</button>
 				</div>

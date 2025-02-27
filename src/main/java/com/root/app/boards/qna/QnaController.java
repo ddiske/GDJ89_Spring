@@ -20,14 +20,16 @@ public class QnaController {
 	private QnaService qnaService;
 	
 	@RequestMapping(value = "list", method = RequestMethod.GET)
-	public void getList(Pager pager, Model model) throws Exception {
+	public String getList(Pager pager, Model model) throws Exception {
 		model.addAttribute("list", qnaService.getList(pager));
 		model.addAttribute("pager", pager);
+		return "board/list";
 	}
 	
 	@RequestMapping(value = "detail",  method = RequestMethod.GET)
-	public void getDetail(QnaDTO qnaDTO, Model model) throws Exception {
-		model.addAttribute("qnaDTO", qnaService.getDetail(qnaDTO));
+	public String getDetail(QnaDTO qnaDTO, Model model) throws Exception {
+		model.addAttribute("dto", qnaService.getDetail(qnaDTO));
+		return "board/detail";
 	}
 	
 	@RequestMapping(value = "add", method = RequestMethod.GET)
@@ -36,7 +38,7 @@ public class QnaController {
 			model.addAttribute("result", "로그인 후 작성 가능");
 			model.addAttribute("path", "./list");
 		}else {
-			return "/notice/add";
+			return "board/boardForm";
 		}
 		
 		return "commons/result";
@@ -53,21 +55,24 @@ public class QnaController {
 	}
 	
 	@RequestMapping(value = "update", method = RequestMethod.GET)
-	public void update(QnaDTO qnaDTO) throws Exception {
+	public String update(QnaDTO qnaDTO, Model model) throws Exception {
 		qnaDTO = (QnaDTO)qnaService.getDetail(qnaDTO);
+		model.addAttribute("dto", qnaDTO);
+		return "board/boardForm";
 	}
 	
 	@RequestMapping(value = "update", method = RequestMethod.POST)
-	public void update(QnaDTO qnaDTO, Model model) throws Exception {
+	public String update2(QnaDTO qnaDTO, Model model) throws Exception {
 		qnaService.update(qnaDTO);
-		model.addAttribute("qnaDTO", qnaService.getDetail(qnaDTO));
+		model.addAttribute("dto", qnaService.getDetail(qnaDTO));
+		return "redirect: ./list";
 	}
 	
-	@RequestMapping(value = "delete", method = RequestMethod.GET)
+	@RequestMapping(value = "delete", method = RequestMethod.POST)
 	public String delete(QnaDTO qnaDTO, Model model) throws Exception {
 		qnaService.delete(qnaDTO);
 		model.addAttribute("result", "글이 삭제되었습니다");
-		model.addAttribute("path", "/notice/list");
+		model.addAttribute("path", "list");
 		
 		return "commons/result";
 	}

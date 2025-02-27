@@ -8,10 +8,13 @@ const passWord = document.getElementById("passWord");
 
 
 login_btn.addEventListener("click", function(){
-    if(userName.getAttribute("value") == "") {
-        alert("ID를 입력하세요");
+    
+    if(userName.value != "" && passWord.value != "") {
+        login_form.submit();
+        return;
+    }else {
+        alert("ID와 PW를 입력하세요");
         return;
     }
-    login_form.submit();
 
 })
