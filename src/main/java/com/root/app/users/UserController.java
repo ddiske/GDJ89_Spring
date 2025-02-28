@@ -28,12 +28,7 @@ public class UserController {
 	@RequestMapping(value = "join", method = RequestMethod.POST)
 	public String join(UserDTO userDTO, MultipartFile profile, HttpSession session) throws Exception {
 		String path = "./join";
-		System.out.println(profile.getContentType());
-		System.out.println(profile.getName());
-		System.out.println(profile.getOriginalFilename());
-		System.out.println(profile.getSize());
-		System.out.println(profile.isEmpty());
-		System.out.println(session.getServletContext());
+
 		if(userService.join(userDTO, profile, session.getServletContext()) > 0) {
 			path = "redirect:/";
 		}
@@ -72,6 +67,7 @@ public class UserController {
 	
 	@RequestMapping(value = "mypage", method = RequestMethod.GET)
 	public UserDTO mypage(UserDTO userDTO, HttpSession session) throws Exception {
+		
 		return (UserDTO)session.getAttribute("user");
 	}
 	
@@ -82,10 +78,10 @@ public class UserController {
 	
 	
 	@RequestMapping(value = "update", method = RequestMethod.POST)
-	public String update(UserDTO userDTO, HttpSession session, Model model) throws Exception {
+	public String update(UserDTO userDTO, HttpSession session, MultipartFile profile) throws Exception {
 		UserDTO user = (UserDTO)session.getAttribute("user");
 		userDTO.setUserName(user.getUserName());
-		int result = userService.update(userDTO);
+		int result = userService.update(userDTO, profile, session.getServletContext());
 		
 		if(result > 0) {
 			session.setAttribute("user", userDTO);

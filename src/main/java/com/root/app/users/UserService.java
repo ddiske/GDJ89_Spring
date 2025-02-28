@@ -1,31 +1,48 @@
 package com.root.app.users;
 
 import java.io.File;
+import java.util.Calendar;
+import java.util.UUID;
 
 import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.root.app.files.FileDAO;
 
 @Service
 public class UserService {
 	
 	@Autowired
 	private UserDAO userDAO;
+	@Autowired
+	private FileDAO fileDAO;
 	
-	public int join(UserDTO userDTO, MultipartFile proFile, ServletContext context) throws Exception {
+	public int join(UserDTO userDTO, MultipartFile profile, ServletContext context) throws Exception {
+		int result = userDAO.join(userDTO);
+		
+		if(profile.isEmpty()) {
+			return result;
+		}else if(result == 0) {
+			return result;
+		}
 		// 1. 어디에 저장할 것인가
 		String path = context.getRealPath("/resources/images/profiles/");
-		System.out.println(path);
-		File file = new File(path);
-		if(!file.exists()) {
-			file.mkdir();
-		}
 		
-		// 2. 어떤 파일을 무슨 이름으로 저장할 것인가
+		String f = fileDAO.upload(path, profile);
+
 		
-		return 0;//userDAO.join(userDTO);
+		UserFileDTO userFileDTO = new UserFileDTO();
+		userFileDTO.setUserName(userDTO.getUserName());
+		userFileDTO.setFileName(f);
+		userFileDTO.setOldName(profile.getOriginalFilename());
+		
+		result = userDAO.upload(userFileDTO);
+		
+		return result;
 	}
 	
 	public UserDTO login(UserDTO userDTO) throws Exception {
@@ -45,8 +62,26 @@ public class UserService {
 		return userDAO.getDetail(userDTO);
 	}
 	
-	public int update(UserDTO userDTO) throws Exception {
-		return userDAO.update(userDTO);
+	public int update(UserDTO userDTO, MultipartFile profile, ServletContext context) throws Exception {
+		int result = userDAO.update(userDTO);
+		
+		if(result == 0) {
+			String path = context.getRealPath("/resources/images/profiles/");
+			
+			String f = fileDAO.upload(path, profile);
+
+			
+			UserFileDTO userFileDTO = new UserFileDTO();
+			userFileDTO.setUserName(userDTO.getUserName());
+			userFileDTO.setFileName(f);
+			userFileDTO.setOldName(profile.getOriginalFilename());
+			
+			result = userDAO.upload(userFileDTO);
+		}
+		
+		
+		
+		return result;
 	}
 
 }

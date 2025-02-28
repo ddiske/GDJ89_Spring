@@ -18,6 +18,9 @@
 			<h6>${userDTO.name }</h6>
 			<h6>${userDTO.phone }</h6>
 			<h6>${userDTO.email }</h6>
+			<div>
+				<img src="/resources/images/profiles/${not empty userDTO.userFileDTO.fileName ? userDTO.userFileDTO.fileName : 'default.jfif'}">
+			</div>
 			<a href="./update?userName=${userDTO.userName }">수정하기</a>
 		</div>
 	</div>

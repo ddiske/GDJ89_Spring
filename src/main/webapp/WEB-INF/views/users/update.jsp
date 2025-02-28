@@ -14,7 +14,7 @@
 	<div class="container-fluid my-5">
 		<div class="row col-md-8 offset-md-2">
 			<!-- contents 내용 작성 -->
-			<form action="./update" method="post">
+			<form action="./update" method="post" enctype="multipart/form-data">
 				<legend>회원 정보 수정</legend>
 				<div class="input-group mb-3">
 					<span class="input-group-text">Name</span>
@@ -37,6 +37,16 @@
 							placeholder="${userDTO.email}"
 							value="${userDTO.email}" name="email"> <label
 							for="floatingInputGroup1"></label>
+					</div>
+					<span class="input-group-text">Profile</span>
+					<div class="form-control">
+						<input type="file" class="form-control" id="profile"
+							placeholder="" name="profile"> <label for="profile"></label>
+					</div>
+					<div>
+						<span>
+							${userDTO.userFileDTO.oldName }
+						</span> 
 					</div>
 					<button class="btn btn-outline-success">수정하기</button>
 				</div>

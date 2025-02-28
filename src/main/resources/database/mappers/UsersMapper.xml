@@ -12,12 +12,32 @@
 		SELECT * FROM USERS WHERE USERNAME = #{userName} AND PASSWORD = #{passWord}
 	</select>
 	
-	<select id="getDetail" parameterType="UserDTO" resultType="UserDTO">
-		SELECT * FROM USERS WHERE USERNAME = #{userName}
+	<select id="getDetail" parameterType="UserDTO" resultMap="getDetailResult">
+		SELECT * FROM USERS U LEFT OUTER JOIN PROFILE P USING(USERNAME) WHERE USERNAME = #{userName}
 	</select>
 	
 	<update id="update" parameterType="UserDTO">
 		UPDATE USERS SET NAME = #{name}, PHONE = #{phone}, EMAIL = #{email} WHERE USERNAME = #{userName}
 	</update>
+	
+	<!-- 파일저장 -->
+	<insert id="upload" parameterType="UserFileDTO">
+		INSERT INTO PROFILE VALUES (#{userName}, #{fileName}, #{oldName})
+	</insert>
+	
+	<resultMap type="UserDTO" id="getDetailResult">
+		<!-- PK column : 컬럼명, property : setter의 이름 -->
+		<id column="USERNAME" property="userName"/>
+		<!-- 그 외 : 컬럼명, property : setter의 이름 -->
+		<result column="PASSWORD" property="passWord"/>
+		<result column="NAME" property="name"/>
+		<result column="PHONE" property="phone"/>
+		<result column="EMAIL" property="email"/>
+		<!-- 1:1 -->
+		<association property="userFileDTO" javaType="UserFileDTO">
+			<result column="FILENAME" property="fileName"/>
+			<result column="OLDNAME" property="oldName"/>
+		</association>
+	</resultMap>
 
 </mapper>
