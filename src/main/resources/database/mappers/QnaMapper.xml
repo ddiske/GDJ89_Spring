@@ -24,11 +24,16 @@
 	
 	<insert id="reply" parameterType="QnaDTO">
 		INSERT INTO QNA (BOARDNUM, USERNAME, BOARDTITLE, BOARDCONTENTS, BOARDREF, BOARDSTEP, BOARDDEPTH)
-		VALUES (BOARD_SEQ.NEXTVAL, #{userName}, #{boardTitle}, #{boardContents}, #{boardRef}, #{boardStep}, #{boardDepth})
+		VALUES (BOARD_SEQ.NEXTVAL, #{userName}, #{boardTitle}, #{boardContents},
+		(SELECT BOARDREF FROM QNA WHERE BOARDNUM = ${boardNum}),
+		(SELECT BOARDSTEP+1 FROM QNA WHERE BOARDNUM = ${boardNum}),
+		(SELECT BOARDDEPTH+1 FROM QNA WHERE BOARDNUM = ${boardNum}))
 	</insert>
 	
 	<update id="updateStep" parameterType="QnaDTO">
-		UPDATE QNA SET BOARDSTEP = BOARDSTEP+1 WHERE BOARDREF = #{boardRef} AND BOARDSTEP > #{boardStep}
+		UPDATE QNA SET BOARDSTEP = BOARDSTEP+1
+		WHERE BOARDREF = (SELECT BOARDREF FROM QNA WHERE BOARDNUM = ${boardNum))
+		AND BOARDSTEP > (SELECT BOARDSTEP FROM QNA WHERE BOARDNUM = ${boardNum})
 	</update>
 	
 	<update id="update" parameterType="QnaDTO">
