@@ -14,7 +14,7 @@
 	<div class="container-fluid my-5">
 		<div class="row col-md-8 offset-md-2">
 			<!-- contents 내용 작성 -->
-			<form action="./join" method="post">
+			<form action="./join" method="post" enctype="multipart/form-data">
 			<legend>회원가입</legend>
 				<div class="input-group mb-3">
 					<span class="input-group-text">UserName</span>
@@ -41,6 +41,11 @@
 					<div class="form-control">
 						<input type="email" class="form-control" id="floatingInputGroup1"
 							placeholder="" name="email"> <label for="floatingInputGroup1"></label>
+					</div>
+					<span class="input-group-text">Profile</span>
+					<div class="form-control">
+						<input type="file" class="form-control" id="profile"
+							placeholder="" name="profile"> <label for="profile"></label>
 					</div>
 					<button class="btn btn-outline-success">회원가입</button>
 				</div>

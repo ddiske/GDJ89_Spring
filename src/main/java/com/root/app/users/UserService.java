@@ -1,7 +1,12 @@
 package com.root.app.users;
 
+import java.io.File;
+
+import javax.servlet.ServletContext;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class UserService {
@@ -9,8 +14,18 @@ public class UserService {
 	@Autowired
 	private UserDAO userDAO;
 	
-	public int join(UserDTO userDTO) throws Exception {
-		return userDAO.join(userDTO);
+	public int join(UserDTO userDTO, MultipartFile proFile, ServletContext context) throws Exception {
+		// 1. 어디에 저장할 것인가
+		String path = context.getRealPath("/resources/images/profiles/");
+		System.out.println(path);
+		File file = new File(path);
+		if(!file.exists()) {
+			file.mkdir();
+		}
+		
+		// 2. 어떤 파일을 무슨 이름으로 저장할 것인가
+		
+		return 0;//userDAO.join(userDTO);
 	}
 	
 	public UserDTO login(UserDTO userDTO) throws Exception {
