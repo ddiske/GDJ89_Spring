@@ -3,11 +3,11 @@ package com.root.app.files;
 import java.io.File;
 import java.util.UUID;
 
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Component;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 
-@Repository
+@Component
 public class FileDAO {
 	
 	public String upload(String path, MultipartFile proFile) throws Exception {

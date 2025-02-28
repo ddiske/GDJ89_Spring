@@ -20,6 +20,10 @@
 		UPDATE USERS SET NAME = #{name}, PHONE = #{phone}, EMAIL = #{email} WHERE USERNAME = #{userName}
 	</update>
 	
+	<update id="updateUpload" parameterType="UserFileDTO">
+		UPDATE PROFILE SET FILENAME = #{fileName}, OLDNAME = #{oldName} WHERE USERNAME = #{userName}
+	</update>
+	
 	<!-- 파일저장 -->
 	<insert id="upload" parameterType="UserFileDTO">
 		INSERT INTO PROFILE VALUES (#{userName}, #{fileName}, #{oldName})

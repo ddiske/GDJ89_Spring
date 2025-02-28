@@ -29,16 +29,8 @@ public class UserService {
 		}else if(result == 0) {
 			return result;
 		}
-		// 1. 어디에 저장할 것인가
-		String path = context.getRealPath("/resources/images/profiles/");
 		
-		String f = fileDAO.upload(path, profile);
-
-		
-		UserFileDTO userFileDTO = new UserFileDTO();
-		userFileDTO.setUserName(userDTO.getUserName());
-		userFileDTO.setFileName(f);
-		userFileDTO.setOldName(profile.getOriginalFilename());
+		UserFileDTO userFileDTO = this.save(context, profile, userDTO);
 		
 		result = userDAO.upload(userFileDTO);
 		
@@ -63,25 +55,30 @@ public class UserService {
 	}
 	
 	public int update(UserDTO userDTO, MultipartFile profile, ServletContext context) throws Exception {
+		// dao user정보를 update
 		int result = userDAO.update(userDTO);
 		
+		// update 후에 결과값이 0이면 insert 시도
+		UserFileDTO userFileDTO = this.save(context, profile, userDTO);
+		
 		if(result == 0) {
-			String path = context.getRealPath("/resources/images/profiles/");
 			
-			String f = fileDAO.upload(path, profile);
-
-			
-			UserFileDTO userFileDTO = new UserFileDTO();
-			userFileDTO.setUserName(userDTO.getUserName());
-			userFileDTO.setFileName(f);
-			userFileDTO.setOldName(profile.getOriginalFilename());
-			
-			result = userDAO.upload(userFileDTO);
 		}
 		
-		
-		
 		return result;
+	}
+	
+	private UserFileDTO save(ServletContext context, MultipartFile profile, UserDTO userDTO) throws Exception {
+		String path = context.getRealPath("/resources/images/profiles/");
+		
+		String f = fileDAO.upload(path, profile);
+		
+		UserFileDTO userFileDTO = new UserFileDTO();
+		userFileDTO.setUserName(userDTO.getUserName());
+		userFileDTO.setFileName(f);
+		userFileDTO.setOldName(profile.getOriginalFilename());
+		
+		return userFileDTO;
 	}
 
 }
