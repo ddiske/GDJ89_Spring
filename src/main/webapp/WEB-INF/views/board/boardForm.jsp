@@ -14,7 +14,7 @@
 	<div class="container-fluid my-5">
 		<div class="row col-md-8 offset-md-2">
 			<!-- contents 내용 작성 -->
-			<form action=""	method="post">
+			<form action=""	method="post" enctype="multipart/form-data">
 				<legend>${kind } 글 작성</legend>
 				<div class="input-group mb-3">
 				<input type="hidden" name="boardNum" value="${dto.boardNum }">
@@ -32,12 +32,20 @@
 							value="${dto.boardContents}" name="boardContents"> <label
 							for="floatingInputGroup1"></label>
 					</div>
-					<button class="btn btn-outline-success">완료</button>
 				</div>
+
+				<div id="files">
+					<button type="button" id="add_file">파일추가</button>
+				</div>
+					
+					
+					
+					<button class="btn btn-outline-success">완료</button>
 			</form>
 		</div>
 	</div>
 
+	<script src="/resources/js/files/fileManager.js"></script>
 	<c:import url="/WEB-INF/views/templates/layout_footer.jsp"></c:import>
 	<c:import url="/WEB-INF/views/templates/boot_js.jsp"></c:import>
 </body>

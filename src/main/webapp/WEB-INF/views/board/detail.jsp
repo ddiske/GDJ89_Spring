@@ -20,6 +20,12 @@
 			<h6>${dto.userName }</h6>
 			<h6>${dto.boardDate }</h6>
 			<h6>${dto.boardHit }</h6>
+			
+			<div>
+			<c:forEach items="${dto.boardFileDTOs}" var="f">
+				<a href="/resources/images/${kind}/${f.fileName}">${f.oldName}</a>
+			</c:forEach>
+		</div>
 
 				<c:if test="${(user.userName eq dto.userName) or (user.userName eq 'admin') }">
 				</c:if>
