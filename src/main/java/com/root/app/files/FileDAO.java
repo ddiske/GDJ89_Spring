@@ -28,7 +28,7 @@ public class FileDAO {
 		f = f + "_" +proFile.getOriginalFilename();
 		
 		// 3. HDD에 저장
-		//	1) transferTo
+		//	1) MultipartFile class의 transferTo 메서드
 		file = new File(file, f);
 //		proFile.transferTo(file);
 		//	2) FileCopyUtils
