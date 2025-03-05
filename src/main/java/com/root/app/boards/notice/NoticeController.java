@@ -34,6 +34,7 @@ public class NoticeController {
 	
 	@RequestMapping(value = "list", method = RequestMethod.GET)
 	public ModelAndView getList(Pager pager) throws Exception {
+		System.out.println("Notice List");
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("list", noticeService.getList(pager));
 		mv.addObject("pager", pager);
