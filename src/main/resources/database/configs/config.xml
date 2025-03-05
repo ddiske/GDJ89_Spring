@@ -14,5 +14,6 @@
 		<typeAlias type="com.root.app.users.UserFileDTO" alias="UserFileDTO"/>
 		<typeAlias type="com.root.app.boards.BoardFileDTO" alias="BoardFileDTO"/>
 		<typeAlias type="java.util.List" alias="List"/>
+		<typeAlias type="com.root.app.carts.CartDTO" alias="CartDTO"/>
 	</typeAliases>
 </configuration>

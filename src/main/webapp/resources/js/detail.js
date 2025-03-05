@@ -3,6 +3,8 @@ const deletebtn = document.getElementById("deletebtn");
 const replybtn = document.getElementById("replybtn");
 const frm = document.getElementById("frm");
 const frm2 = document.getElementById("frm2");
+const addCart = document.getElementById("addCart");
+const input = document.getElementById("input");
 
 
 // 수정 버튼을 클릭했을 때 콘솔에 출력
@@ -31,7 +33,24 @@ deletebtn.addEventListener("click", function(){
 
 })
 
-replybtn.addEventListener("click", function(){
-    frm.action = "./reply";
-    frm.submit();
+try {
+    replybtn.addEventListener("click", function(){
+        frm.action = "./reply";
+        frm.submit();
+    })
+} catch (error) {
+    
+}
+
+addCart.addEventListener('click', function(){
+    // console.log(input.value);
+    // let s = `hello ${input.value}`;
+    // console.log(s);
+    fetch(`../users/addCart?productNum=${input.value}`)
+    .then(res => res.text())
+    .then(res => {
+        if(res.trim()==1) {
+            confirm("장바구니로 이동하시겠습니까?")
+        }
+    })
 })

@@ -43,5 +43,9 @@
 			<result column="OLDNAME" property="oldName"/>
 		</association>
 	</resultMap>
+	
+	<insert id="addCart" parameterType="CartDTO">
+		INSERT INTO CARTS VALUES (#{userName}, #{productNum})
+	</insert>
 
 </mapper>

@@ -22,10 +22,11 @@
 
 			<div>
 				<form action="/test" id="frm">
-					<input type="hidden" name="productNum" value="${productDTO.productNum}">
+					<input type="hidden" name="productNum" id="input" value="${productDTO.productNum}">
 					<button type="button" id="updatebtn">수정</button>
 					<button type="button" id="deletebtn">삭제</button>
 				</form>
+				<button type="button" id="addCart">장바구니에 담기</button>
 			</div>
 
 

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.root.app.carts.CartDTO;
 import com.root.app.files.FileDAO;
 
 @Service
@@ -66,6 +67,10 @@ public class UserService {
 		}
 		
 		return result;
+	}
+	
+	public int addCart(CartDTO cartDTO) throws Exception {
+		return userDAO.addCart(cartDTO);
 	}
 	
 	private UserFileDTO save(ServletContext context, MultipartFile profile, UserDTO userDTO) throws Exception {
