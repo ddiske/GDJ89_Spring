@@ -1,17 +1,18 @@
 const files = document.getElementById("files");
 const add_file = document.getElementById("add_file");
-const dels = document.getElementsByClassName('del');
-for(let d of dels) {
-    d.addEventListener("click", function(){
-        console.log("Click");
-    })
-}
+const del = document.getElementsByClassName('del');
+let count = files.getAttribute("data-files-size");
 
-let count = 1;
+files.addEventListener('click', function(e){
+    if(e.target.classList.contains('del')){
+        e.target.parentElement.remove();
+        count--;
+    }
+})
 
 
 add_file.addEventListener("click", function(){
-    if(count > 5) {
+    if(count > 4) {
         alert("파일 첨부는 5개 까지만 가능함");
         return;
     }

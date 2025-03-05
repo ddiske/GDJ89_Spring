@@ -11,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.root.app.boards.BoardDTO;
 import com.root.app.pages.Pager;
@@ -54,10 +55,10 @@ public class QnaController {
 	}
 	
 	@RequestMapping(value = "add", method = RequestMethod.POST)
-	public String add(QnaDTO qnaDTO, HttpSession session, Pager pager) throws Exception {
+	public String add(QnaDTO qnaDTO, HttpSession session, Pager pager, MultipartFile [] attaches) throws Exception {
 		UserDTO user = (UserDTO)session.getAttribute("user");
 		qnaDTO.setUserName(user.getUserName());
-		qnaService.add(qnaDTO);
+		qnaService.add(qnaDTO, session, attaches);
 		
 		return "redirect: ./list";
 		

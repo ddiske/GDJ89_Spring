@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.root.app.boards.BoardDTO;
@@ -63,10 +64,10 @@ public class NoticeController {
 	}
 	
 	@RequestMapping(value = "add", method = RequestMethod.POST)
-	public ModelAndView add(NoticeDTO noticeDTO, HttpSession session, Pager pager) throws Exception {
+	public ModelAndView add(NoticeDTO noticeDTO, HttpSession session, Pager pager, MultipartFile [] attaches) throws Exception {
 		UserDTO userDTO = (UserDTO)session.getAttribute("user");
 		noticeDTO.setUserName(userDTO.getUserName());
-		noticeService.add(noticeDTO);
+		noticeService.add(noticeDTO, session, attaches);
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("list", noticeService.getList(pager));
 		mv.setViewName("redirect:./list");
