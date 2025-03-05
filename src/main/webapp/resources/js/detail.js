@@ -50,7 +50,12 @@ addCart.addEventListener('click', function(){
     .then(res => res.text())
     .then(res => {
         if(res.trim()==1) {
-            confirm("장바구니로 이동하시겠습니까?")
+            let flag = confirm("장바구니로 이동하시겠습니까?");
+            if(flag == true) {
+                
+            }
+        }else{
+            alert("실패")
         }
     })
 })
