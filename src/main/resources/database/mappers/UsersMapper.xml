@@ -66,5 +66,15 @@
 			)
 		WHERE R BETWEEN #{pager.startNum} AND #{pager.endNum}
 	</select>
+	
+	<!-- map user:UserDTO, products:Long[] -->
+	<delete id="cartDelete" parameterType="Map">
+		DELETE CARTS
+		WHERE USERNAME = #{user.userName}
+		AND PRODUCTNUM IN
+			<foreach collection="products" item="productNum" open="(" close=")" separator=",">
+				#{productNum}
+			</foreach>
+	</delete>
 
 </mapper>

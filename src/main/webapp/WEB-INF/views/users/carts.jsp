@@ -27,6 +27,14 @@
 			<table class="table table-striped">
 				<thead class="table-dark">
 					<tr>
+						<th>
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox" name="flexCheckDefault" id="checkAll">
+								<label class="form-check-label" for="flexCheckDefault1">
+									전체 선택
+								</label>
+							</div>
+						</th>
 						<th scope="col">상품번호</th>
 						<th scope="col">상품명</th>
 						<th scope="col">이자율</th>
@@ -36,6 +44,11 @@
 				<tbody>
 					<c:forEach items="${list}" var="v">
 						<tr>
+							<td>
+								<div class="form-check">
+									<input class="form-check-input checks" type="checkbox" value=${v.productNum} name="flexCheckDefault" id="check1">
+								</div>
+							</td>
 							<td>${v.productNum }</td>
 							<td><a href="../products/detail?productNum=${v.productNum }">${v.productName }</td>
 							<td>${v.productRate }</td>
@@ -63,10 +76,14 @@
 			  </ul>
 			</nav>
 
+			<button id="cart_add" class="btn btn-outline-success">가입</button>
+			<button id="cart_delete" class="btn btn-outline-danger">삭제</button>
+
 		</div>
 	</div>
 
 	<script src="/resources/js/list.js"></script>
+	<script src="/resources/js/users/cart.js"></script>
 	<c:import url="/WEB-INF/views/templates/layout_footer.jsp"></c:import>
 	<c:import url="/WEB-INF/views/templates/boot_js.jsp"></c:import>
 </body>

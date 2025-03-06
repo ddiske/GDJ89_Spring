@@ -1,12 +1,15 @@
 package com.root.app.users;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,6 +26,17 @@ public class UserController {
 	
 	@Autowired
 	private UserService userService;
+	
+	@RequestMapping(value = "cartDelete", method = RequestMethod.GET)
+	public String cartDelete(HttpSession session, Model model, Long [] productNum) throws Exception {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("user", session.getAttribute("user"));
+		map.put("products", productNum);
+		int result = userService.cartDelete(map);
+		model.addAttribute("result", result);
+		System.out.println(result);
+		return "commons/ajaxresult";
+	}
 	
 	@RequestMapping(value = "carts", method = RequestMethod.GET)
 	public void getCartList(HttpSession session, Model model, Pager pager) throws Exception {

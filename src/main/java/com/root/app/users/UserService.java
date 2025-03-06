@@ -102,5 +102,9 @@ public class UserService {
 		
 		return userFileDTO;
 	}
+	
+	public int cartDelete(Map<String, Object> map) throws Exception {
+		return userDAO.cartDelete(map);
+	}
 
 }

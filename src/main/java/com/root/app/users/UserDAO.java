@@ -45,5 +45,9 @@ public class UserDAO {
 	public Long getCartTotalCount(Object userDTO) throws Exception {
 		return sqlSession.selectOne(NAMESPACE+"getCartTotalCount", userDTO);
 	}
+	
+	public int cartDelete(Map<String, Object> map) throws Exception {
+		return sqlSession.delete(NAMESPACE+"cartDelete", map);
+	}
 
 }

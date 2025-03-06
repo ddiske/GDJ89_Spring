@@ -16,5 +16,6 @@
 		<typeAlias type="java.util.Map" alias="Map"/>
 		<typeAlias type="java.util.List" alias="List"/>
 		<typeAlias type="com.root.app.carts.CartDTO" alias="CartDTO"/>
+		<typeAlias type="com.root.app.accounts.AccountDTO" alias="AccountDTO"/>
 	</typeAliases>
 </configuration>
