@@ -52,7 +52,7 @@ addCart.addEventListener('click', function(){
         if(res.trim()==1) {
             let flag = confirm("장바구니로 이동하시겠습니까?");
             if(flag == true) {
-                
+                location.href = "../users/carts"
             }
         }else{
             alert("실패")

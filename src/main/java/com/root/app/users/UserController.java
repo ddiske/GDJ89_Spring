@@ -1,15 +1,20 @@
 package com.root.app.users;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.root.app.carts.CartDTO;
+import com.root.app.pages.Pager;
+import com.root.app.products.ProductDTO;
 
 
 @Controller
@@ -18,6 +23,14 @@ public class UserController {
 	
 	@Autowired
 	private UserService userService;
+	
+	@RequestMapping(value = "carts", method = RequestMethod.GET)
+	public void getCartList(HttpSession session, Model model, Pager pager) throws Exception {
+		List<ProductDTO> list = userService.getCartList(pager, (UserDTO)session.getAttribute("user"));
+		model.addAttribute("list", list);
+		model.addAttribute("pager", pager);
+		
+	}
 	
 	@RequestMapping(value = "addCart", method = RequestMethod.GET)
 	public String addCart(CartDTO cartDTO, HttpSession session, HttpServletRequest request, Model model) throws Exception {

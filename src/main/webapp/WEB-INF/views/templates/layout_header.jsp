@@ -50,6 +50,10 @@
 							<c:if test="${not empty user }">
 							<li class="nav-item">
 								<a class="nav-link active"
+								aria-current="page" href="/users/carts"><i style="font-size: 1.4rem;" class="bi bi-cart-check"></i></a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link active"
 								aria-current="page" href="/users/mypage">My Page</a>
 							</li>
 							<li class="nav-item">

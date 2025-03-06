@@ -2,6 +2,9 @@ package com.root.app.users;
 
 import java.io.File;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.ServletContext;
@@ -13,6 +16,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.root.app.carts.CartDTO;
 import com.root.app.files.FileDAO;
+import com.root.app.pages.Pager;
+import com.root.app.products.ProductDTO;
 
 @Service
 public class UserService {
@@ -71,6 +76,18 @@ public class UserService {
 	
 	public int addCart(CartDTO cartDTO) throws Exception {
 		return userDAO.addCart(cartDTO);
+	}
+	
+	public List<ProductDTO> getCartList(Pager pager, Object userDTO) throws Exception {
+		Long totalCount = userDAO.getCartTotalCount(userDTO);
+		
+		pager.make(totalCount);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("pager", pager);
+		map.put("user", userDTO);
+		
+		return userDAO.getCartList(map);
 	}
 	
 	private UserFileDTO save(ServletContext context, MultipartFile profile, UserDTO userDTO) throws Exception {
