@@ -35,7 +35,7 @@ public class UserController {
 		int result = userService.cartDelete(map);
 		model.addAttribute("result", result);
 		System.out.println(result);
-		return "commons/ajaxresult";
+		return "commons/ajaxResult";
 	}
 	
 	@RequestMapping(value = "carts", method = RequestMethod.GET)

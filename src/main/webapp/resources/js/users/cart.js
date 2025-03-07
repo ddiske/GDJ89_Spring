@@ -32,9 +32,28 @@ cart_add.addEventListener('click', ()=>{
     }
 
     // let url = "../accounts/add"+params.toString();
-    let url = `../accounts/add?${params.toString()}`;
+    // let url = `../accounts/add?${params.toString()}`;
 
-    fetch(url);
+    // enctype = multipart/form-data
+    fetch("../accounts/add", {
+        method : "POST",
+        headers : {
+            'Content-type' : 'application/x-www-form-urlencoded; charset=UTF-8'
+        },
+        body : params
+    })
+    // promise
+    .then(res => res.text())
+    .then(res => {
+        console.log(res);
+        if(res.trim()>0) {
+            alert(res+'개의 상품 가입 성공')
+            location.reload();
+        }
+    })
+    .catch(e=>{
+        alert("관리자에게 문의")
+    })
 })
 
 cart_delete.addEventListener('click', ()=>{

@@ -5,6 +5,12 @@
   
 <mapper namespace="com.root.app.accounts.AccountDAO">
 	
-	
+	<insert id="add" parameterType="List">
+		INSERT ALL
+			<foreach collection="list" item="accountDTO" open="" separator=" " close="">
+				INTO ACCOUNTS (ACCOUNTNUM, USERNAME, PRODUCTNUM) VALUES (#{accountDTO.accountNum}, #{accountDTO.userName}, #{accountDTO.productNum})
+			</foreach>
+		SELECT * FROM DUAL
+	</insert>
 
 </mapper>
