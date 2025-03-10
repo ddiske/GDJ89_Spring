@@ -67,11 +67,41 @@ public class NoticeService implements BoardService {
 		// TODO Auto-generated method stub
 		return noticeDAO.update(boardDTO);
 	}
+	
+	public int update(BoardDTO boardDTO, MultipartFile [] attaches, HttpSession session) throws Exception {
+		int result = noticeDAO.update(boardDTO);
+		
+		for(MultipartFile attach: attaches) {
+			if(attach.isEmpty()) {
+				continue;
+			}
+			BoardFileDTO boardFileDTO = this.fileSave(attach, session.getServletContext());
+			//DB에 저장
+			//
+			boardFileDTO.setBoardNum(boardDTO.getBoardNum());
+			result = noticeDAO.addFile(boardFileDTO);
+		}
+		
+		return result;
+	}
 
 	@Override
 	public int delete(BoardDTO boardDTO) throws Exception {
 		// TODO Auto-generated method stub
 		return noticeDAO.delete(boardDTO);
+	}
+	
+	public int fileDelete(BoardFileDTO boardFileDTO, HttpSession session) throws Exception {
+		// 1. 정보 조회
+		boardFileDTO = noticeDAO.getFileDetail(boardFileDTO);
+		// 2. DB에서 삭제
+		int result = noticeDAO.fileDelete(boardFileDTO);
+		// 3. HDD에서 삭제
+		if(result > 0) {
+			String path = session.getServletContext().getRealPath("/resources/images/notice/");
+			fileDAO.fileDelete(path, boardFileDTO.getFileName());
+		}
+		return result;
 	}
 	
 	private BoardFileDTO fileSave(MultipartFile attach, ServletContext servletContext)throws Exception{

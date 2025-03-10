@@ -38,24 +38,24 @@ try {
         frm.action = "./reply";
         frm.submit();
     })
+    
+    addCart.addEventListener('click', function(){
+        // console.log(input.value);
+        // let s = `hello ${input.value}`;
+        // console.log(s);
+        fetch(`../users/addCart?productNum=${input.value}`)
+        .then(res => res.text())
+        .then(res => {
+            if(res.trim()==1) {
+                let flag = confirm("장바구니로 이동하시겠습니까?");
+                if(flag == true) {
+                    location.href = "../users/carts"
+                }
+            }else{
+                alert("실패")
+            }
+        })
+    })
 } catch (error) {
     
 }
-
-addCart.addEventListener('click', function(){
-    // console.log(input.value);
-    // let s = `hello ${input.value}`;
-    // console.log(s);
-    fetch(`../users/addCart?productNum=${input.value}`)
-    .then(res => res.text())
-    .then(res => {
-        if(res.trim()==1) {
-            let flag = confirm("장바구니로 이동하시겠습니까?");
-            if(flag == true) {
-                location.href = "../users/carts"
-            }
-        }else{
-            alert("실패")
-        }
-    })
-})

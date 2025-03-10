@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.root.app.boards.BoardDTO;
+import com.root.app.boards.BoardFileDTO;
 import com.root.app.pages.Pager;
 import com.root.app.users.UserDTO;
 
@@ -77,17 +78,15 @@ public class NoticeController {
 	@RequestMapping(value = "update", method = RequestMethod.GET)
 	public String update(NoticeDTO noticeDTO, Model model) throws Exception {
 		noticeDTO = (NoticeDTO)noticeService.getDetail(noticeDTO);
+		
 		model.addAttribute("dto", noticeDTO);
 		return "board/boardForm";
 	}
 	
 	@RequestMapping(value = "update", method = RequestMethod.POST)
-	public ModelAndView update(NoticeDTO noticeDTO, ModelAndView mv) throws Exception {
-		noticeService.update(noticeDTO);
-		noticeDTO = (NoticeDTO)noticeService.getDetail(noticeDTO);
-		mv.addObject("dto", noticeDTO);
-		mv.setViewName("board/detail");
-		return mv;
+	public String update(BoardDTO boardDTO, MultipartFile [] attaches, HttpSession session) throws Exception {
+		noticeService.update(boardDTO, attaches, session);
+		return "redirect:./detail?boardNum="+boardDTO.getBoardNum();
 	}
 	
 	@RequestMapping(value = "delete", method = RequestMethod.POST)
@@ -103,6 +102,14 @@ public class NoticeController {
 		}
 		
 		return "commons/result";
+	}
+	
+	@RequestMapping(value = "fileDelete", method = RequestMethod.POST)
+	public String fileDelete(BoardFileDTO boardFileDTO, HttpSession session, Model model) throws Exception{
+		int result = noticeService.fileDelete(boardFileDTO, session);
+		model.addAttribute("result", result);
+		
+		return "commons/ajaxResult";
 	}
 
 }

@@ -57,6 +57,12 @@ public class NoticeDAO implements BoardDAO {
 		return sqlSession.delete(NAMESPCAE+"delete", boardDTO);
 	}
 	
+	public BoardFileDTO getFileDetail(BoardFileDTO boardFileDTO) throws Exception {
+		return sqlSession.selectOne(NAMESPCAE+"getFileDetail", boardFileDTO);
+	}
 	
+	public int fileDelete(BoardFileDTO boardFileDTO) throws Exception{
+		return sqlSession.delete(NAMESPCAE+"fileDelete", boardFileDTO);
+	}
  
 }

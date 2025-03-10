@@ -34,6 +34,14 @@
 					</div>
 				</div>
 
+				<div class="mb-3">
+					<c:forEach items="${dto.boardFileDTOs }" var="f">
+						<div class="alert alert-secondary" role="alert">
+							${f.oldName }<button type="button" class="btn badge text-bg-secondary file_delete" data-file-num="${f.fileNum}" data-kind="${kind}">X</button>
+						</div>
+					</c:forEach>
+				</div>
+
 				<div id="files" data-files-size="${dto.boardFileDTOs.size()}">
 					<button type="button" id="add_file">파일추가</button>
 				</div>
@@ -45,7 +53,8 @@
 		</div>
 	</div>
 
-	<script src="/resources/js/files/fileManager.js"></script>
+	<!-- <script src="/resources/js/files/fileDelete.js"></script> -->
+	<script src="/resources/js/files/fileManager.js" type="module"></script>
 	<c:import url="/WEB-INF/views/templates/layout_footer.jsp"></c:import>
 	<c:import url="/WEB-INF/views/templates/boot_js.jsp"></c:import>
 </body>
