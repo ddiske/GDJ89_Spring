@@ -30,7 +30,7 @@ public class NoticeController {
 	
 	@ModelAttribute("kind")
 	public String getKind() {
-		return "Notice";
+		return "notice";
 	}
 	
 	@RequestMapping(value = "list", method = RequestMethod.GET)
@@ -90,9 +90,9 @@ public class NoticeController {
 	}
 	
 	@RequestMapping(value = "delete", method = RequestMethod.POST)
-	public String delete(NoticeDTO noticeDTO, Model model) throws Exception {
-		int result = noticeService.delete(noticeDTO);
-		
+	public String delete(NoticeDTO noticeDTO, Model model, MultipartFile [] attaches, HttpSession session) throws Exception {
+		int result = noticeService.delete(noticeDTO, attaches, session);
+		System.out.println(result);
 		if(result > 0) {
 			model.addAttribute("result", "글이 삭제되었습니다");
 			model.addAttribute("path", "list");
@@ -110,6 +110,14 @@ public class NoticeController {
 		model.addAttribute("result", result);
 		
 		return "commons/ajaxResult";
+	}
+	
+	@RequestMapping(value = "fileDown", method = RequestMethod.GET)
+	public String fileDown(BoardFileDTO boardFileDTO, Model model) throws Exception {
+		boardFileDTO = noticeService.getFileDetail(boardFileDTO);
+		model.addAttribute("file", boardFileDTO);
+		
+		return "fileDownView";
 	}
 
 }

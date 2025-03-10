@@ -60,11 +60,14 @@
 	<select id="getTotalCount" resultType="Long">
 		SELECT COUNT(BOARDNUM) FROM NOTICE
 	</select>
-	<delete id="fileDelete" parameterType="BoardFileDTO">
-		DELETE NOTICEFILES WHERE FILENUM = #{fileNum}
-	</delete>
 	<select id="getFileDetail" parameterType="BoardFileDTO" resultType="BoardFileDTO">
 		SELECT * FROM NOTICEFILES WHERE FILENUM = #{fileNum}
 	</select>
+	<delete id="fileDelete" parameterType="BoardFileDTO">
+		DELETE NOTICEFILES WHERE FILENUM = #{fileNum}
+	</delete>
+	<delete id="fileDeleteAll" parameterType="BoardDTO">
+		DELETE NOTICEFILES WHERE BOARDNUM = #{boardNum}
+	</delete>
 
 </mapper>

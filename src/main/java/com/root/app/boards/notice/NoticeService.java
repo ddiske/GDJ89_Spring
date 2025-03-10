@@ -62,12 +62,7 @@ public class NoticeService implements BoardService {
 		return result;
 	}
 
-	@Override
-	public int update(BoardDTO boardDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return noticeDAO.update(boardDTO);
-	}
-	
+	@Override	
 	public int update(BoardDTO boardDTO, MultipartFile [] attaches, HttpSession session) throws Exception {
 		int result = noticeDAO.update(boardDTO);
 		
@@ -86,9 +81,20 @@ public class NoticeService implements BoardService {
 	}
 
 	@Override
-	public int delete(BoardDTO boardDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return noticeDAO.delete(boardDTO);
+	public int delete(BoardDTO boardDTO, MultipartFile [] attaches, HttpSession session) throws Exception {
+		// 1. 파일들의 정보 조회
+		boardDTO = noticeDAO.getDetail(boardDTO);
+//		int result = noticeDAO.fileDeleteAll(boardDTO);
+		int result = noticeDAO.delete(boardDTO);
+		if(result > 0) {
+			String path = session.getServletContext().getRealPath("/resources/images/notice/");
+			for(BoardFileDTO boardFileDTO : ((NoticeDTO)boardDTO).getBoardFileDTOs()) {
+				
+				fileDAO.fileDelete(path, boardFileDTO.getFileName());
+			}
+		}
+		
+		return result;
 	}
 	
 	public int fileDelete(BoardFileDTO boardFileDTO, HttpSession session) throws Exception {
@@ -104,11 +110,13 @@ public class NoticeService implements BoardService {
 		return result;
 	}
 	
+	public BoardFileDTO getFileDetail(BoardFileDTO boardFileDTO) throws Exception {
+		return noticeDAO.getFileDetail(boardFileDTO);
+	}
+	
 	private BoardFileDTO fileSave(MultipartFile attach, ServletContext servletContext)throws Exception{
 		//1. 어디에 저장할 것인가??
 		String path = servletContext.getRealPath("/resources/images/notice/");
-		
-		System.out.println(path);
 		
 		File file = new File(path);
 		

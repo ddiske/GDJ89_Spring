@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.root.app.boards.BoardDTO;
 import com.root.app.boards.BoardFileDTO;
 import com.root.app.boards.BoardService;
+import com.root.app.boards.notice.NoticeDTO;
 import com.root.app.files.FileDAO;
 import com.root.app.pages.Pager;
 
@@ -60,14 +61,34 @@ public class QnaService implements BoardService {
 	}
 
 	@Override
-	public int update(BoardDTO boardDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return qnaDAO.update(boardDTO);
+	public int update(BoardDTO boardDTO, MultipartFile [] attaches, HttpSession session) throws Exception {
+		int result = qnaDAO.update(boardDTO);
+		for(MultipartFile attach: attaches) {
+			if(attach.isEmpty()) {
+				continue;
+			}
+			BoardFileDTO boardFileDTO = this.fileSave(attach, session.getServletContext());
+			//DB에 저장
+			//
+			boardFileDTO.setBoardNum(boardDTO.getBoardNum());
+			result = qnaDAO.addFile(boardFileDTO);
+		}
+		
+		return result;
 	}	
 
 	@Override
-	public int delete(BoardDTO boardDTO) throws Exception {
-		// TODO Auto-generated method stub
+	public int delete(BoardDTO boardDTO, MultipartFile [] attaches, HttpSession session) throws Exception {
+		boardDTO = qnaDAO.getDetail(boardDTO);
+		int result = qnaDAO.delete(boardDTO);
+		if(result > 0) {
+			String path = session.getServletContext().getRealPath("/resources/images/qna/");
+			for(BoardFileDTO boardFileDTO : ((QnaDTO)boardDTO).getBoardFileDTOs()) {
+				
+				fileDAO.fileDelete(path, boardFileDTO.getFileName());
+			}
+		}
+		
 		return qnaDAO.delete(boardDTO);
 	}
 	
@@ -87,8 +108,6 @@ public class QnaService implements BoardService {
 		//1. 어디에 저장할 것인가??
 		String path = servletContext.getRealPath("/resources/images/qna/");
 		
-		System.out.println(path);
-		
 		File file = new File(path);
 		
 		if(!file.exists()) {
@@ -104,6 +123,19 @@ public class QnaService implements BoardService {
 		boardFileDTO.setOldName(attach.getOriginalFilename());
 		
 		return boardFileDTO;
+	}
+	
+	public int fileDelete(BoardFileDTO boardFileDTO, HttpSession session) throws Exception {
+		// 1. 정보 조회
+		boardFileDTO = qnaDAO.getFileDetail(boardFileDTO);
+		// 2. DB에서 삭제
+		int result = qnaDAO.fileDelete(boardFileDTO);
+		// 3. HDD에서 삭제
+		if(result > 0) {
+			String path = session.getServletContext().getRealPath("/resources/images/qna/");
+			fileDAO.fileDelete(path, boardFileDTO.getFileName());
+		}
+		return result;
 	}
 	
 	
