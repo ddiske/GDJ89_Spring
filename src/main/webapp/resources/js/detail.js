@@ -79,3 +79,12 @@ reply.addEventListener("click", ()=>{
         body : params
     })
 })
+
+getList()
+
+function getList(){
+    let url = new URL("listComments", location)
+    url.searchParams.append("productNum", input.value)
+
+    fetch(url)
+}

@@ -38,12 +38,14 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value = "detail", method = RequestMethod.GET)
-	public ModelAndView getDetail(ProductDTO productDTO) throws Exception {
+	public ModelAndView getDetail(ProductDTO productDTO, Pager pager) throws Exception {
 		
 		productDTO = productService.getDetail(productDTO);
 		
 		ModelAndView mv = new ModelAndView();
 		
+		mv.addObject("list", productService.getCommentsList(productDTO, pager));
+		mv.addObject("pager", pager);
 		// model
 //		mv.addObject("속성명", "값");
 		mv.addObject("productDTO", productDTO);
@@ -137,6 +139,13 @@ public class ProductController {
 		int result = productService.addComments(commentsDTO);
 
 		
+	}
+	
+	@RequestMapping(value = "listComments", method = RequestMethod.GET)
+	public void listComments(ProductDTO productDTO, Pager pager, Model model) throws Exception {
+		
+		
+		System.out.println("Comments List");
 	}
 
 }

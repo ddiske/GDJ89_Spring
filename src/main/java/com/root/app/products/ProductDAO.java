@@ -56,5 +56,9 @@ public class ProductDAO {
 	public List<CommentsDTO> getCommentsList(Map<String, Object> map) throws Exception {
 		return sqlSession.selectList(NAMESPACE+"getCommentsList", map);
 	}
+	
+	public Long getCommentsTotal(ProductDTO productDTO) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"getCommentsTotal", productDTO);
+	}
 
 }
