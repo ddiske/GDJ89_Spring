@@ -7,6 +7,9 @@ const addCart = document.getElementById("addCart");
 const input = document.getElementById("input");
 const reply = document.getElementById("reply");
 const contents = document.getElementById("contents")
+const commentsListResult = document.getElementById("commentsListResult")
+const pages = document.getElementsByClassName("pages");
+const deleteComments = document.getElementsByClassName("deleteComments");
 
 
 // 수정 버튼을 클릭했을 때 콘솔에 출력
@@ -66,7 +69,28 @@ reply.addEventListener("click", ()=>{
     // let params = new URLSearchParams();
     // params.append("productNum", input.value)
     // params.append("boardContents", contents.value)
+    
+    addComments();
+    
+    contents.value = "";
+})
 
+getList(1)
+
+function getList(page){
+    let url = new URL("listComments", location)
+    url.searchParams.append("productNum", input.value)
+    url.searchParams.append("page", page)
+
+    fetch(url)
+    .then(r => r.text())
+    .then(r => {
+        commentsListResult.innerHTML = r;
+    })
+    .catch(e => alert("Error"))
+}
+
+function addComments(){
     let params = new FormData();
     params.append("productNum", input.value)
     params.append("boardContents", contents.value)
@@ -78,13 +102,73 @@ reply.addEventListener("click", ()=>{
         // },
         body : params
     })
+    .then(r=>r.text())
+    .then(r=> {
+        // getList()
+        if(r.trim()*1>0){
+            alert("등록 성공");
+        }else{
+            alert("등록 실패")
+        }
+    })
+    .catch(e=>{
+        alert("Error");
+    })
+    getList(1);
+}
+
+commentsListResult.addEventListener("click", (e)=>{
+    if(e.target.classList.contains('pages')){
+        getList(e.target.getAttribute("data-page-num"))
+    }else if(e.target.classList.contains('deleteComments')){
+        deletecmnt(e.target.value);
+    }else if(e.target.classList.contains('updateComments')){
+        let boardContents = prompt("수정할 댓글 내용 입력");
+        updatecmnt(e.target.value, boardContents);
+    }
+
 })
 
-getList()
+function deletecmnt(boardNum){
+    if(confirm("정말 삭제하시겠습니까?")) {
+        let params = new FormData();
+        params.append("boardNum", boardNum)
+    
+        fetch("./deleteComments", {
+            method : "POST",
+            body : params
+        })
+        .then(r=>r.text())
+        .then(r=> {
+            if(r.trim()*1>0){
+                alert("삭제 완료")
+            }else{
+                alert("실패")
+            }
+        })
+        .catch(e=>alert("Error"))
+    }
+    getList(1);
+}
 
-function getList(){
-    let url = new URL("listComments", location)
-    url.searchParams.append("productNum", input.value)
+function updatecmnt(boardNum, boardContents){
+    let params = new FormData();
+    params.append("boardNum", boardNum)
+    params.append("boardContents", boardContents)
 
-    fetch(url)
+    fetch("./updateComments", {
+        method : "POST",
+        body : params
+    })
+    .then(r=>r.text())
+    .then(r=> {
+        if(r.trim()*1>0){
+            alert("수정 완료")
+        }else{
+            alert("실패")
+        }
+    })
+    .catch(e=>alert("Error"))
+
+    getList(1);
 }

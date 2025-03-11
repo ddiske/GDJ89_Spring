@@ -44,8 +44,6 @@ public class ProductController {
 		
 		ModelAndView mv = new ModelAndView();
 		
-		mv.addObject("list", productService.getCommentsList(productDTO, pager));
-		mv.addObject("pager", pager);
 		// model
 //		mv.addObject("속성명", "값");
 		mv.addObject("productDTO", productDTO);
@@ -132,20 +130,52 @@ public class ProductController {
 //	-------------- Comments -----------------
 	
 	@RequestMapping(value = "addComments", method = RequestMethod.POST)
-	public void addComments(CommentsDTO commentsDTO, HttpSession session, Model model) throws Exception {
+	public String addComments(CommentsDTO commentsDTO, HttpSession session, Model model) throws Exception {
 		UserDTO userDTO = (UserDTO)session.getAttribute("user");
 		commentsDTO.setUserName(userDTO.getUserName());
 		
 		int result = productService.addComments(commentsDTO);
 
+		model.addAttribute("result", result);
 		
+		return "commons/ajaxResult";
 	}
 	
 	@RequestMapping(value = "listComments", method = RequestMethod.GET)
-	public void listComments(ProductDTO productDTO, Pager pager, Model model) throws Exception {
+	public String listComments(CommentsDTO commentsDTO, Pager pager, Model model) throws Exception {
+		
+		List<CommentsDTO> list = productService.getCommentsList(commentsDTO, pager);
+		
+		model.addAttribute("list", list);
 		
 		
-		System.out.println("Comments List");
+		return "commons/commentsList";
+	}
+	
+	@RequestMapping(value = "deleteComments", method = RequestMethod.POST)
+	public String deleteComments(CommentsDTO commentsDTO, HttpSession session, Model model) throws Exception {
+		UserDTO userDTO = (UserDTO)session.getAttribute("user");
+		commentsDTO.setUserName(userDTO.getUserName());
+		
+		int result = productService.deleteComments(commentsDTO);
+		
+		
+		model.addAttribute("result", result);
+		
+		return "commons/ajaxResult";
+	}
+	
+	@RequestMapping(value = "updateComments", method = RequestMethod.POST)
+	public String updateComments(CommentsDTO commentsDTO, HttpSession session, Model model) throws Exception {
+		UserDTO userDTO = (UserDTO)session.getAttribute("user");
+		commentsDTO.setUserName(userDTO.getUserName());
+		
+		int result = productService.updateComments(commentsDTO);
+		
+		
+		model.addAttribute("result", result);
+		
+		return "commons/ajaxResult";
 	}
 
 }

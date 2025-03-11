@@ -58,12 +58,10 @@ public class ProductService {
 		return productDAO.addComments(commentsDTO);
 	}
 	
-	public List<CommentsDTO> getCommentsList(ProductDTO productDTO, Pager pager) throws Exception {
-		CommentsDTO commentsDTO = new CommentsDTO();
-		commentsDTO.setProductNum(productDTO.getProductNum());
+	public List<CommentsDTO> getCommentsList(CommentsDTO commentsDTO, Pager pager) throws Exception {
+		commentsDTO.setProductNum(commentsDTO.getProductNum());
 		
-		Long totalCount = productDAO.getCommentsTotal(productDTO);
-		
+		Long totalCount = productDAO.getCommentsTotal(commentsDTO);
 		pager.setPerPage(5L);
 		pager.make(totalCount);
 		
@@ -72,6 +70,14 @@ public class ProductService {
 		map.put("commentsDTO", commentsDTO);
 		
 		return productDAO.getCommentsList(map);
+	}
+	
+	public int deleteComments(CommentsDTO commentsDTO) throws Exception {
+		return productDAO.deleteComments(commentsDTO);
+	}
+	
+	public int updateComments(CommentsDTO commentsDTO) throws Exception {
+		return productDAO.updateComments(commentsDTO);
 	}
 
 }
