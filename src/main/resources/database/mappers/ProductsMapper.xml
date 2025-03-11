@@ -69,4 +69,15 @@
 		VALUES (COMMENTS_SEQ.NEXTVAL, #{boardContents}, #{userName}, #{productNum})
 	</insert>
 	
+	<select id="getCommentsList" resultType="CommentsDTO" parameterType="Map">
+		SELECT * FROM (
+			SELECT ROWNUM R, M.* FROM(
+				SELECT * FROM COMMENTS
+				WHERE PRODUCTNUM = #{commentsDTO.productNum}
+				ORDER BY BOARDNUM DESC
+			) M
+		)
+		WHERE R BETWEEN #{pager.startNum} AND #{pager.endNum}
+	</select>
+	
 </mapper>

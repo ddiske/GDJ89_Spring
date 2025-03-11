@@ -8,6 +8,7 @@
 	<typeAliases>
 		<typeAlias type="com.root.app.users.UserDTO" alias="UserDTO"/>
 		<typeAlias type="com.root.app.products.ProductDTO" alias="ProductDTO"/>
+		<typeAlias type="com.root.app.products.CommentsDTO" alias="CommentsDTO"/>
 		<typeAlias type="com.root.app.boards.notice.NoticeDTO" alias="NoticeDTO"/>
 		<typeAlias type="com.root.app.pages.Pager" alias="Pager"/>
 		<typeAlias type="com.root.app.boards.qna.QnaDTO" alias="QnaDTO"/>
@@ -18,7 +19,6 @@
 		<typeAlias type="com.root.app.carts.CartDTO" alias="CartDTO"/>
 		<typeAlias type="com.root.app.accounts.AccountDTO" alias="AccountDTO"/>
 		<typeAlias type="com.root.app.boards.BoardDTO" alias="BoardDTO"/>
-		<typeAlias type="com.root.app.products.CommentsDTO" alias="CommentsDTO"/>
 		
 		
 	</typeAliases>

@@ -1,6 +1,7 @@
 package com.root.app.products;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,8 +47,14 @@ public class ProductDAO {
 		return sqlSession.selectOne(NAMESPACE+"getTotalCount", pager);
 	}
 	
+//	------------------- Comments --------------------
+	
 	public int addComments(CommentsDTO commentsDTO) throws Exception {
 		return sqlSession.insert(NAMESPACE+"addComments", commentsDTO);
+	}
+	
+	public List<CommentsDTO> getCommentsList(Map<String, Object> map) throws Exception {
+		return sqlSession.selectList(NAMESPACE+"getCommentsList", map);
 	}
 
 }

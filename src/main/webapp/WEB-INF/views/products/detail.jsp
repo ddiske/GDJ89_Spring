@@ -7,6 +7,12 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <c:import url="/WEB-INF/views/templates/boot_css.jsp"></c:import>
+<style>
+	#contents{
+		width: 100%;
+		height: 100px;
+	}
+</style>
 </head>
 <body>
 	<c:import url="/WEB-INF/views/templates/layout_header.jsp"></c:import>
@@ -29,6 +35,13 @@
 				<button type="button" id="addCart">장바구니에 담기</button>
 			</div>
 
+			<div>
+				<form action="" id="frm2">
+					<h6>댓글</h6>
+					<input type="text" id="contents" name="boardContents">
+					<button type="button" id="reply">등록</button>
+				</form>
+			</div>
 
 			<%-- <a href="./update?productNum=${productDTO.productNum }">수정하기</a>
 			<a href="./delete?productNum=${productDTO.productNum }">삭제하기</a> --%>

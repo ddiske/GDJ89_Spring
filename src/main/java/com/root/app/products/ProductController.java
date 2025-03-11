@@ -1,7 +1,9 @@
 package com.root.app.products;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.root.app.pages.Pager;
+import com.root.app.users.UserDTO;
 
 @Controller
 @RequestMapping(value = "/products/*")
@@ -122,6 +125,18 @@ public class ProductController {
 		}
 		
 		return path;
+	}
+	
+//	-------------- Comments -----------------
+	
+	@RequestMapping(value = "addComments", method = RequestMethod.POST)
+	public void addComments(CommentsDTO commentsDTO, HttpSession session, Model model) throws Exception {
+		UserDTO userDTO = (UserDTO)session.getAttribute("user");
+		commentsDTO.setUserName(userDTO.getUserName());
+		
+		int result = productService.addComments(commentsDTO);
+
+		
 	}
 
 }

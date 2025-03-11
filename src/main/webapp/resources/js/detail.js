@@ -5,6 +5,8 @@ const frm = document.getElementById("frm");
 const frm2 = document.getElementById("frm2");
 const addCart = document.getElementById("addCart");
 const input = document.getElementById("input");
+const reply = document.getElementById("reply");
+const contents = document.getElementById("contents")
 
 
 // 수정 버튼을 클릭했을 때 콘솔에 출력
@@ -59,3 +61,21 @@ try {
 } catch (error) {
     
 }
+
+reply.addEventListener("click", ()=>{
+    // let params = new URLSearchParams();
+    // params.append("productNum", input.value)
+    // params.append("boardContents", contents.value)
+
+    let params = new FormData();
+    params.append("productNum", input.value)
+    params.append("boardContents", contents.value)
+
+    fetch("./addComments", {
+        method : "POST",
+        // headers : {
+        //     'Content-type' : 'application/x-www-form-urlencoded; charset=UTF-8'
+        // },
+        body : params
+    })
+})

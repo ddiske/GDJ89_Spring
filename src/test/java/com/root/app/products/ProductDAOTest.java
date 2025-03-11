@@ -93,11 +93,11 @@ public class ProductDAOTest extends SampleTestCase {
 		CommentsDTO commentsDTO = new CommentsDTO();
 		commentsDTO.setBoardContents("testCase");
 		commentsDTO.setProductNum(3L);
-		commentsDTO.setUserName("user");
+		commentsDTO.setUserName("test");
 		
 		int result = productDAO.addComments(commentsDTO);
 		
-		assertNotEquals(result, 0);
+		assertNotEquals(0, result);
 	}
 
 }

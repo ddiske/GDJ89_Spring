@@ -1,6 +1,7 @@
 package com.root.app.products;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -48,6 +49,16 @@ public class ProductService {
 	
 	public int delete(ProductDTO productDTO) throws Exception {
 		return productDAO.delete(productDTO);
+	}
+	
+//	---------- Comments ----------------
+	
+	public int addComments(CommentsDTO commentsDTO) throws Exception {
+		return productDAO.addComments(commentsDTO);
+	}
+	
+	public List<CommentsDTO> getCommentsList(Map<String, Object> map) throws Exception {
+		return productDAO.getCommentsList(map);
 	}
 
 }
