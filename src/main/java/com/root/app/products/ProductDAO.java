@@ -45,5 +45,9 @@ public class ProductDAO {
 	public Long getTotalCount(Pager pager) throws Exception {
 		return sqlSession.selectOne(NAMESPACE+"getTotalCount", pager);
 	}
+	
+	public int addComments(CommentsDTO commentsDTO) throws Exception {
+		return sqlSession.insert(NAMESPACE+"addComments", commentsDTO);
+	}
 
 }

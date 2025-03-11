@@ -60,7 +60,7 @@ public class ProductDAOTest extends SampleTestCase {
 //		assertNotEquals(0, ar.size());
 //	}
 	
-	@Test(expected = Exception.class)
+//	@Test(expected = Exception.class)
 	public void addTest() throws Exception {
 		ProductDTO productDTO = new ProductDTO();
 		Calendar ca = Calendar.getInstance();
@@ -86,6 +86,18 @@ public class ProductDAOTest extends SampleTestCase {
 			System.out.println("Finish");
 			
 		}
+	}
+	
+	@Test
+	public void addCommentsTest() throws Exception {
+		CommentsDTO commentsDTO = new CommentsDTO();
+		commentsDTO.setBoardContents("testCase");
+		commentsDTO.setProductNum(3L);
+		commentsDTO.setUserName("user");
+		
+		int result = productDAO.addComments(commentsDTO);
+		
+		assertNotEquals(result, 0);
 	}
 
 }

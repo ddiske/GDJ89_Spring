@@ -62,4 +62,11 @@
 			PRODUCTDETAIL LIKE '%'||#{search}||'%'
 			</if> -->
 	</sql>
+	
+	<!-- Comments -->
+	<insert id="addComments" parameterType="CommentsDTO">
+		INSERT INTO COMMENTS (BOARDNUM, BOARDCONTENTS, USERNAME, PRODUCTNUM)
+		VALUES (COMMENTS_SEQ.NEXTVAL, #{boardContents}, #{userName}, #{productNum})
+	</insert>
+	
 </mapper>

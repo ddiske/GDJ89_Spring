@@ -18,6 +18,8 @@
 		<typeAlias type="com.root.app.carts.CartDTO" alias="CartDTO"/>
 		<typeAlias type="com.root.app.accounts.AccountDTO" alias="AccountDTO"/>
 		<typeAlias type="com.root.app.boards.BoardDTO" alias="BoardDTO"/>
+		<typeAlias type="com.root.app.products.CommentsDTO" alias="CommentsDTO"/>
+		
 		
 	</typeAliases>
 </configuration>
