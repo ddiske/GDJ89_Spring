@@ -1,12 +1,18 @@
 package com.root.app.products;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletContext;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.root.app.boards.BoardFileDTO;
+import com.root.app.files.FileDAO;
 import com.root.app.pages.Pager;
 
 @Service
@@ -14,6 +20,8 @@ public class ProductService {
 	
 	@Autowired
 	private ProductDAO productDAO;
+	@Autowired
+	private FileDAO fileDAO;
 	
 //	list
 	public List<ProductDTO> getList(Pager pager) throws Exception {
@@ -34,6 +42,23 @@ public class ProductService {
 //		DAO 호출 코드
 		return productDAO.add(productDTO);
 		
+	}
+	
+	public String fileSave(MultipartFile uploadFile, ServletContext servletContext)throws Exception{
+		//1. 어디에 저장할 것인가??
+		String path = servletContext.getRealPath("/resources/images/products/");
+		
+		File file = new File(path);
+		
+		if(!file.exists()) {
+			file.mkdirs();
+		}
+		
+		//2. HDD에 파일을 저장하고 저장된 파일명을 리턴
+		String fileName = fileDAO.upload(path, uploadFile);
+		
+		
+		return fileName;
 	}
 	
 	public ProductDTO getDetail(ProductDTO productDTO) throws Exception {

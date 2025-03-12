@@ -38,7 +38,7 @@
 			<div class="mb-3">
 				<form action="" id="frm2">
 					<h6>댓글</h6>
-					<input type="text" id="contents" name="boardContents">
+					<textarea id="contents" name="boardContents"></textarea>
 					<button type="button" id="reply">등록</button>
 				</form>
 			</div>
