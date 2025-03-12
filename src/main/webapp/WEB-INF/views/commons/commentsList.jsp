@@ -10,7 +10,6 @@
 			<th>내용</th>
 			<th>작성일</th>
 			<th></th>
-			<th></th>
 		</tr>
 	</thead>
 	<tbody>
@@ -19,8 +18,10 @@
 				<td>${commentsDTO.userName }</td>
 				<td>${commentsDTO.boardContents }</td>
 				<td>${commentsDTO.boardDate }</td>
-				<td><button class="btn btn-outline-success updateComments" value="${commentsDTO.boardNum}">수정</button></td>
-				<td><button class="btn btn-outline-danger deleteComments" value="${commentsDTO.boardNum}">X</button></td>
+				<td>
+					<button class="btn btn-outline-success updateComments" data-bs-toggle="modal" data-bs-target="#exampleModal" value="${commentsDTO.boardNum}">수정</button>
+					<button class="btn btn-outline-danger deleteComments" value="${commentsDTO.boardNum}">X</button>
+				</td>
 			</tr>
 		</c:forEach>
 	</tbody>

@@ -10,7 +10,7 @@ const contents = document.getElementById("contents")
 const commentsListResult = document.getElementById("commentsListResult")
 const pages = document.getElementsByClassName("pages");
 const deleteComments = document.getElementsByClassName("deleteComments");
-
+const modal_change = document.getElementById("modal_change");
 
 // 수정 버튼을 클릭했을 때 콘솔에 출력
 // form method의 값을 콘솔에 출력
@@ -117,16 +117,42 @@ function addComments(){
     getList(1);
 }
 
+let num = 0;
 commentsListResult.addEventListener("click", (e)=>{
     if(e.target.classList.contains('pages')){
         getList(e.target.getAttribute("data-page-num"))
     }else if(e.target.classList.contains('deleteComments')){
         deletecmnt(e.target.value);
+        getList(1);
     }else if(e.target.classList.contains('updateComments')){
-        let boardContents = prompt("수정할 댓글 내용 입력");
-        updatecmnt(e.target.value, boardContents);
+        // let boardContents = prompt("수정할 댓글 내용 입력");
+        // updatecmnt(e.target.value, boardContents);
+        let c = e.target.parentElement.previousElementSibling.previousElementSibling.innerHTML;
+        document.getElementById("message-text").value = c;
+        num = e.target.value;
+        
     }
+})
 
+modal_change.addEventListener("click", ()=>{
+    let params = new FormData();
+    params.append("boardNum", num)
+    params.append("boardContents", document.getElementById("message-text").value)
+    
+    fetch("./updateComments", {
+        method : "POST",
+        body : params
+    })
+    .then(r=>r.text())
+    .then(r=> {
+        if(r.trim()*1>0){
+            alert("수정 완료")
+        }else{
+            alert("실패")
+        }
+    })
+    .catch(e=>alert("Error"))
+    getList(1);
 })
 
 function deletecmnt(boardNum){
@@ -148,7 +174,7 @@ function deletecmnt(boardNum){
         })
         .catch(e=>alert("Error"))
     }
-    getList(1);
+
 }
 
 function updatecmnt(boardNum, boardContents){
@@ -172,3 +198,12 @@ function updatecmnt(boardNum, boardContents){
 
     getList(1);
 }
+
+
+// Modal
+// const myModal = document.getElementById('myModal')
+// const myInput = document.getElementById('myInput')
+
+// myModal.addEventListener('shown.bs.modal', () => {
+//   myInput.focus()
+// })
