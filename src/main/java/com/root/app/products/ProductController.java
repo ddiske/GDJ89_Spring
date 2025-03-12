@@ -99,8 +99,8 @@ public class ProductController {
 	@RequestMapping(value = "detailFiles", method = RequestMethod.POST)
 	public String detailFiles(MultipartFile uploadFile, HttpSession session, Model model) throws Exception {
 		String result = productService.fileSave(uploadFile, session.getServletContext());
+		result = "/resources/images/products/"+result;
 		model.addAttribute("result", result);
-		System.out.println(result);
 		
 		return "commons/ajaxResult";
 	}

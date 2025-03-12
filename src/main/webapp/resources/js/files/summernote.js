@@ -9,6 +9,10 @@ $('#detail').summernote({
                 method : "POST",
                 body : f
             })
+            .then(r=>r.text())
+            .then(r=>{
+                $('#detail').summernote('editor.insertImage', r.trim());
+            })
         }
     }
 })
