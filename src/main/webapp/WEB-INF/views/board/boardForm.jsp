@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <c:import url="/WEB-INF/views/templates/boot_css.jsp"></c:import>
+<c:import url="/WEB-INF/views/templates/summernote.jsp"></c:import>
 </head>
 <body>
 	<c:import url="/WEB-INF/views/templates/layout_header.jsp"></c:import>
@@ -20,17 +21,15 @@
 				<input type="hidden" name="boardNum" value="${dto.boardNum }">
 					<span class="input-group-text">제목</span>
 					<div class="form-control">
-						<input type="text" class="form-control" id="floatingInputGroup1"
+						<input type="text" class="form-control" id="title"
 							placeholder="${dto.boardTitle}"
 							value="${dto.boardTitle}" name="boardTitle"> <label
-							for="floatingInputGroup1"></label>
+							for="title"></label>
 					</div>
-					<span class="input-group-text">내용</span>
+				</div>
+				<div class="input-group mb-3">
 					<div class="form-control">
-						<input type="text" class="form-control" id="floatingInputGroup1"
-							placeholder=""
-							value="${dto.boardContents}" name="boardContents"> <label
-							for="floatingInputGroup1"></label>
+						<textarea id="detail" name="boardContents" value="${dto.boardContents}"></textarea>
 					</div>
 				</div>
 
@@ -42,7 +41,7 @@
 					</c:forEach>
 				</div>
 
-				<div id="files" data-files-size="${dto.boardFileDTOs.size()}">
+				<div id="files" data-files-size="${dto.boardFileDTOs.size()}" class="mb-3">
 					<button type="button" id="add_file">파일추가</button>
 				</div>
 					
@@ -54,6 +53,7 @@
 	</div>
 
 	<!-- <script src="/resources/js/files/fileDelete.js"></script> -->
+	<script src="/resources/js/files/summernote.js"></script>
 	<script src="/resources/js/files/fileManager.js" type="module"></script>
 	<c:import url="/WEB-INF/views/templates/layout_footer.jsp"></c:import>
 	<c:import url="/WEB-INF/views/templates/boot_js.jsp"></c:import>
