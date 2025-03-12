@@ -62,7 +62,7 @@
 					</div>
 					<div class="modal-body">
 						<div class="mb-3">
-						<label for="message-text" class="col-form-label">Message:</label>
+						<label for="message-text" class="col-form-label">댓글 수정</label>
 							<textarea class="form-control" id="message-text"></textarea>
 						</div>
 					</div>

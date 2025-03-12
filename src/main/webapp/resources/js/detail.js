@@ -107,6 +107,8 @@ function addComments(){
         // getList()
         if(r.trim()*1>0){
             alert("등록 성공");
+        }else if(r.trim()*1<0){
+            alert("로그인 후 이용가능")
         }else{
             alert("등록 실패")
         }
@@ -147,11 +149,17 @@ modal_change.addEventListener("click", ()=>{
     .then(r=> {
         if(r.trim()*1>0){
             alert("수정 완료")
+        }else if(r.trim()*1<0){
+            alert("로그인 후 이용가능")
         }else{
             alert("실패")
         }
     })
     .catch(e=>alert("Error"))
+    .finally(()=>{
+        document.getElementById("message-text").value = "";
+        num = 0;
+    })
     getList(1);
 })
 
@@ -168,6 +176,8 @@ function deletecmnt(boardNum){
         .then(r=> {
             if(r.trim()*1>0){
                 alert("삭제 완료")
+            }else if(r.trim()*1<0){
+                alert("로그인 후 이용가능")
             }else{
                 alert("실패")
             }

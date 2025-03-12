@@ -132,9 +132,12 @@ public class ProductController {
 	@RequestMapping(value = "addComments", method = RequestMethod.POST)
 	public String addComments(CommentsDTO commentsDTO, HttpSession session, Model model) throws Exception {
 		UserDTO userDTO = (UserDTO)session.getAttribute("user");
-		commentsDTO.setUserName(userDTO.getUserName());
 		
-		int result = productService.addComments(commentsDTO);
+		int result = -1;
+		if(userDTO != null) {
+			commentsDTO.setUserName(userDTO.getUserName());
+			result = productService.addComments(commentsDTO);			
+		}
 
 		model.addAttribute("result", result);
 		
@@ -155,10 +158,12 @@ public class ProductController {
 	@RequestMapping(value = "deleteComments", method = RequestMethod.POST)
 	public String deleteComments(CommentsDTO commentsDTO, HttpSession session, Model model) throws Exception {
 		UserDTO userDTO = (UserDTO)session.getAttribute("user");
-		commentsDTO.setUserName(userDTO.getUserName());
 		
-		int result = productService.deleteComments(commentsDTO);
-		
+		int result = -1;
+		if(userDTO != null) {
+			commentsDTO.setUserName(userDTO.getUserName());
+			result = productService.deleteComments(commentsDTO);			
+		}
 		
 		model.addAttribute("result", result);
 		
@@ -168,10 +173,12 @@ public class ProductController {
 	@RequestMapping(value = "updateComments", method = RequestMethod.POST)
 	public String updateComments(CommentsDTO commentsDTO, HttpSession session, Model model) throws Exception {
 		UserDTO userDTO = (UserDTO)session.getAttribute("user");
-		commentsDTO.setUserName(userDTO.getUserName());
 		
-		int result = productService.updateComments(commentsDTO);
-		
+		int result = -1;
+		if(userDTO != null) {
+			commentsDTO.setUserName(userDTO.getUserName());
+			result = productService.updateComments(commentsDTO);			
+		}
 		
 		model.addAttribute("result", result);
 		
