@@ -105,6 +105,14 @@ public class ProductController {
 		return "commons/ajaxResult";
 	}
 	
+	@RequestMapping(value = "detailFilesDelete", method = RequestMethod.POST)
+	public String detailFilesDelete(String fileName, HttpSession session, Model model) throws Exception {
+		productService.fileDelete(fileName, session);
+		model.addAttribute("result", 1);
+		
+		return "commons/ajaxResult";
+	}
+	
 	@RequestMapping(value = "update", method = RequestMethod.GET)
 	public ModelAndView update(ProductDTO productDTO) throws Exception {
 		productDTO = productService.getDetail(productDTO);

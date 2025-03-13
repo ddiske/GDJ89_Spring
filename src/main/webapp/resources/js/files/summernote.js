@@ -13,6 +13,29 @@ $('#detail').summernote({
             .then(r=>{
                 $('#detail').summernote('editor.insertImage', r.trim());
             })
+        },
+        onMediaDelete: (files)=>{
+            // js : getAttribute("속성명"), .속성명
+            // jquery : attr("속성명"), prop("속성명")
+            // console.log(files[0].src)
+            // console.log($(files[0]).attr("src"))
+
+            let fileName = files[0].src;
+            // let ar = fileName.split("/");
+            // console.log(ar[ar.length-1]);
+
+            ar = fileName.substring(fileName.lastIndexOf("/")+1);
+            // console.log(ar);
+
+            // js fetch
+            // jquery, $.get(), $.post(), $.ajax()
+
+            let params = new FormData();
+            params.append("fileName", ar);
+            fetch("./detailFilesDelete", {
+                method : "POST",
+                body : params
+            })
         }
     }
 })

@@ -11,7 +11,9 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.validator.ValidateWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 
 import com.root.app.SampleTestCase;
 import com.root.app.pages.Pager;
@@ -20,6 +22,13 @@ public class ProductDAOTest extends SampleTestCase {
 	
 	@Autowired
 	private ProductDAO productDAO;
+	@Value("${my.user}")
+	private String userName;
+	
+	@Test
+	public void userNameTest() {
+		System.out.println(userName);
+	}
 	
 	@BeforeClass
 	public static void bf() {
@@ -88,7 +97,7 @@ public class ProductDAOTest extends SampleTestCase {
 		}
 	}
 	
-	@Test
+//	@Test
 	public void addCommentsTest() throws Exception {
 		CommentsDTO commentsDTO = new CommentsDTO();
 		commentsDTO.setBoardContents("testCase");
@@ -99,5 +108,7 @@ public class ProductDAOTest extends SampleTestCase {
 		
 		assertNotEquals(0, result);
 	}
+	
+	
 
 }

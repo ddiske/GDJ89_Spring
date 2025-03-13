@@ -44,7 +44,6 @@ public class FileDAO {
 		
 		if(file.exists()) {
 			boolean check = file.delete();			
-		}
-				
+		}		
 	}
 }

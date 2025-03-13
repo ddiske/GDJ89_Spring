@@ -6,8 +6,10 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -22,6 +24,8 @@ public class ProductService {
 	private ProductDAO productDAO;
 	@Autowired
 	private FileDAO fileDAO;
+	@Value("${products.file.path}")
+	private String path;
 	
 //	list
 	public List<ProductDTO> getList(Pager pager) throws Exception {
@@ -59,6 +63,11 @@ public class ProductService {
 		
 		
 		return fileName;
+	}
+	
+	public void fileDelete(String fileName, HttpSession session) throws Exception {
+		String path = session.getServletContext().getRealPath(this.path);
+		fileDAO.fileDelete(path, fileName);
 	}
 	
 	public ProductDTO getDetail(ProductDTO productDTO) throws Exception {
