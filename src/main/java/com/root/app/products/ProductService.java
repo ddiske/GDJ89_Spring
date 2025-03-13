@@ -66,7 +66,7 @@ public class ProductService {
 	}
 	
 	public void fileDelete(String fileName, HttpSession session) throws Exception {
-		String path = session.getServletContext().getRealPath(this.path);
+		String path = session.getServletContext().getRealPath("/resources/images/products/");
 		fileDAO.fileDelete(path, fileName);
 	}
 	
