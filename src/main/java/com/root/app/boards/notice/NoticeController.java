@@ -54,10 +54,13 @@ public class NoticeController {
 	
 	@RequestMapping(value = "add", method = RequestMethod.GET)
 	public String add(HttpSession session, Model model) throws Exception {
-		if(session.getAttribute("user") == null) {
+		if(session.getAttribute("user")==null) {
 			model.addAttribute("result", "로그인 후 작성 가능");
 			model.addAttribute("path", "./list");
-		}else {
+		}else if(((UserDTO)session.getAttribute("user")).getUserName() != "admin") {
+			model.addAttribute("result", "관리자만 작성 가능");
+			model.addAttribute("path", "./list");
+		}else{
 			return "board/boardForm";
 		}
 		

@@ -69,7 +69,12 @@ a {
 				</tbody>
 			</table>
 
-			<a href="./add" class="btn btn-primary">새 글 작성</a>
+			<c:if test="${kind eq 'qna' and not empty user }">
+				<a href="./add" class="btn btn-primary">새 글 작성</a>
+			</c:if>
+			<c:if test="${kind ne 'qna' and not empty user and user.userName eq 'admin'}">
+				<a href="./add" class="btn btn-primary">새 글 작성</a>
+			</c:if>
 
 			<nav aria-label="Page navigation example">
 				<ul class="pagination">

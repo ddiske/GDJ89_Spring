@@ -79,7 +79,9 @@
 			  </ul>
 			</nav>
 			
-			<a href="./add" class="btn btn-primary">상품 등록</a>
+			<c:if test="${user.userName eq 'admin' }">
+				<a href="./add" class="btn btn-primary">상품 등록</a>
+			</c:if>
 
 		</div>
 	</div>
