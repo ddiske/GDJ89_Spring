@@ -22,17 +22,17 @@
 			<h6>${dto.boardHit }</h6>
 			
 			<div>
-			<c:forEach items="${dto.boardFileDTOs}" var="f">
-				<a href="./fileDown?fileNum=${f.fileNum}">${f.oldName}</a>
-			</c:forEach>
-		</div>
+				<c:forEach items="${dto.boardFileDTOs}" var="f">
+					<a href="./fileDown?fileNum=${f.fileNum}">${f.oldName}</a>
+				</c:forEach>
+			</div>
 
 				<c:if test="${(user.userName eq dto.userName) or (user.userName eq 'admin') }">
 				</c:if>
 			<form id="frm" action="">
 				<input type="hidden" name="boardNum" value="${dto.boardNum}">
-				<button type="button" id="updatebtn">수정하기</button>
-				<button type="button" id="deletebtn">삭제하기</button>
+					<button type="button" id="updatebtn">수정하기</button>
+					<button type="button" id="deletebtn">삭제하기</button>
 				<button type="button" id="replybtn">답글달기</button>
 			</form>
 

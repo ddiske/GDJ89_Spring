@@ -11,6 +11,32 @@
 	
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<annotation-driven />
+	
+	<!-- Interceptors -->
+	<interceptors>
+		<interceptor>
+			<mapping path="/qna/*"/>
+			<mapping path="/users/*"/>
+			<exclude-mapping path="/users/*in"/>
+			<exclude-mapping path="/qna/list"/>
+			<!-- bean의 이름 -->
+			<beans:ref bean="loginCheckInterceptor"/>
+		</interceptor>
+		
+		<interceptor>
+			<mapping path="/products/*"/>
+			<mapping path="/notice/*"/>
+			<exclude-mapping path="/notice/list"/>
+			<exclude-mapping path="/products/list"/>
+			<beans:ref bean="adminCheckInterceptor"/>
+		</interceptor>
+		
+		<interceptor>
+			<mapping path="/qna/update"/>
+			<mapping path="/notice/update"/>
+			<beans:bean class="com.root.app.interceptors.UserNameCheckInterceptor"></beans:bean>
+		</interceptor>
+	</interceptors>
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
