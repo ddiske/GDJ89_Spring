@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -43,7 +44,7 @@ public class RestFulController {
 		restTemplate.postForEntity("url", req, JsonDTO.class);
 		
 		// 3) GET/POST
-		ResponseEntity<JsonDTO> response = restTemplate.exchange("url", HtppMethod.POST, JsonDTO.class);
+		ResponseEntity<JsonDTO> response = restTemplate.exchange("url", HttpMethod.POST, req, JsonDTO.class);
 		
 		// 5. 요청의 결과가 여러개 나올 경우
 		List<JsonDTO> r = restTemplate.getForObject("url", List.class, req);
