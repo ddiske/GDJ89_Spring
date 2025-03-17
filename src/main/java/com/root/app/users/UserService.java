@@ -50,6 +50,8 @@ public class UserService {
 			if(result.getPassWord().equals(userDTO.getPassWord())) {
 				return result;
 			}
+			
+			throw new UserNameException("비밀번호가 틀렸다");
 		}
 		
 		return null;
